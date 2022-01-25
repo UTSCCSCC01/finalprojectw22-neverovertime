@@ -1,49 +1,45 @@
 | Features | Sprint | 
 
-1 - Deal cards to player(s) and dealer
+1 - As a user, I want to be able to create an account
 
-2 - Calculate who wins and winning amounts
+2 - As a user, I want to be able to login
 
-3 - Choose how much is being bet
+3 - As a registered user, I want to be able to logout
 
-4 - Show your cards and dealers cards at proper times
+4 - As a registered user, I want to be able to delete my account
 
-5 - AI for dealer
+5 - As a registered user, I want to be able to change my profile picture
 
-6 - Show Chips/Tokens being used
+6 - As a registered user, I want to be able to view my profile
 
-7 - Friendly user interface
+7 - As a registered user, I want to be able to view other people's profiles
 
-8 - Create/Delete account
+8 - As a registered user, I want to purchase items in an in-game shop
 
-9 - Login/Logout
+9 - As a registered user, I want to view my purchased items
 
-10 - Profile Picture
+10 - As a registered user, I want to be able to follow and unfollow people
 
-11 - View your own profile
+11 - As a registered user, I want to view my following list
 
-12 - View other people's profiles
+12 - As a registered user, I want to view my followers list
 
-13 - In-Game Shop
+13 - As a registered user, I want to see stats in my and other people's profiles
 
-14 - View Purchased In-Game Items
+14 - As a registered user, I want to earn achievements from doing certain actions
 
-15 - Follow/Unfollow People
+15 - As a registered user, I want to view my earned achievements and unearned achievements
 
-16 - View following list
+16 - As a registered user, I want to earn money each day I log in
 
-17 - View followers list
+17 - As a registered user, I want to show off my purchased items in my profile
 
-18 - View stats in profiles
+18 - As a registered user, I want to show off my achievements in my profile
 
-19 - Collect Achievements
+19 - As a registered user, I want to specify which of my stats other users can see
 
-20 - View all Achievements
+20 - As a registered user playing the game, I want to my be able to play blackjack
 
-21 - Earn a certain amount of free money daily upon logging in
+21 - As a registered user playing the game, I want to my winnings to go to my total amount of money
 
-22 - Customize profile to show off purchased in-game items
-
-23 - Customize profile to show off achievements
-
-24 - Customize profile to only show certain stats to other players
+22 - As a registered user playing the game, I want to be able bet
