@@ -8,7 +8,7 @@
 
 4 - Show your cards and dealers cards at proper times
 
-5 - AI for Black Jack
+5 - AI for dealer
 
 6 - Show Chips/Tokens being used
 
