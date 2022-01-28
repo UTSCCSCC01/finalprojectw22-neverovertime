@@ -11,3 +11,4 @@ Contribution:
 
 Contact us! We would love to have engagement from interested parties add onto our project.
 You can use git to fork, create a branch, commit and push your additions, and submit a pull request.
+Your branches should have your name and the travking number of the feature your working on.
