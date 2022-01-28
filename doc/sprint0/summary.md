@@ -13,7 +13,6 @@ Junxiao Yu can spend his time learing and thinking about the game, playing black
 Joshua Sutherland can casually play a few games of black jack instead of going to the casino. Joshua saves money and can spend more time with his family.
 
 Key Principles:
-Clean simple enjoyment. We want our users to be able to be able to easily play black jack in a clean, simple, and effective interface.
-
-Fun profile managing. We want players to easily access, customize, and view their profile.
+Simple enjoyment. We want our users to be able to be able to easily play black jack in a clean, simple, and effective interface.
+Easy profile managment. We want players to easily access, customize, and view their profile.
 
