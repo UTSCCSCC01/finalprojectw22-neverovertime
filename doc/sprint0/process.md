@@ -23,7 +23,7 @@ Big decisions about design will be made by Product Owner. Team will have great i
 
 User Stories:
 
-User stories will be assigned to members in meeting at the beginning of each sprint. Most important user stories will be assigned first, stories are ordered in the product backlog from most important to least. Members get the opportunity in meetings to volunteer or choose the user stories they want to implement. User stories may be completed by multiple members depending on circumstances.
+User stories will be assigned to members in meeting at the beginning of each sprint. The user stories will be seperated into 3 types, which are app interface related user stories, user account related user stories, and gameplay related user stories. The most important user stories will be assigned first, stories are ordered in the product backlog from most important to least. Members get the opportunity in meetings to volunteer or choose the user stories they want to implement. User stories may be completed by multiple members depending on circumstances.
 
 Meetings:
 
