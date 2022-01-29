@@ -19,7 +19,7 @@ Full-Stack Developer - Sifeng Wang. Complete back-end related user stories and m
 
 Decision Making: 
 
-Big decisions about design will be proposed by Product Owner. Team will have great influence on the development decisions through coordination in meetings. Decisions will be approved with a simple majority agreement by memebers. Most decisions within user stories will be left up to each member to make their own implementation decisions for their user stories, provied it will not interfere with other member's user stories.
+Major decisions about design will be proposed by Product Owner. Team will have great influence on the development decisions through coordination in meetings. Decisions will be approved with a simple majority agreement by memebers. Most decisions within user stories will be left up to each member to make, they are allowed to come upwith their own implementation decisions for their user stories, provided it will not interfere with other member's user stories.
 
 User Stories:
 
