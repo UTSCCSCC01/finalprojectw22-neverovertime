@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 
-export function Achievement({}) {
+function Achievement({}) {
   const [achievement, setAchievement] = useState([
     {text: 'Win 1 round of blackjack', prize: 'Reward $10', key : 1}, /* no key property and any other; change in Flatlist*/
     {text: 'Win 10 round of blackjack', prize: 'Reward $100', key : 2},
@@ -91,3 +91,5 @@ export function Achievement({}) {
     }
 
   })
+
+  export default Achievement

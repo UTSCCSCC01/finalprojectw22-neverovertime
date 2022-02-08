@@ -69,8 +69,8 @@ Subtasks:
 
 - Brandon Timm - 2 hours/day
 - Cory Heisterberg - 2 hours/day
-- Elena Wang
-- Honglei Song
+- Elena Wang - 2 hours/day
+- Honglei Song - 2 hours/day
 - Lida Xia - 15 hours total
 - Ruxiao Li - 15 hours total
-- Shengjie Zou
+- Shengjie Zou - 2 hours/day

@@ -1,35 +1,100 @@
-import * as React from 'react';
-import { Button, View, Text } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Achievement } from './components/Achievement';
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ * @flow strict-local
+ */
 
-/*This code should be in home.js */
-function HomeScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
-      <Button
-        title="Go to Achievement"
-        onPress={() => navigation.navigate('Achievement')}
-      />
-    </View>
-  );
-}
-
-
-const Stack = createNativeStackNavigator();
-
-function App() {
-  return (
-    /*This code should be in home.js */
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Achievement" component={Achievement} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-}
-
-export default App;
+ import React from 'react';
+ import type {Node} from 'react';
+ import {
+   SafeAreaView,
+   ScrollView,
+   StatusBar,
+   StyleSheet,
+   Text,
+   useColorScheme,
+   View,
+   Button,
+   Alert,
+ } from 'react-native';
+ 
+ import {
+   Colors,
+   DebugInstructions,
+   Header,
+   LearnMoreLinks,
+   ReloadInstructions,
+ } from 'react-native/Libraries/NewAppScreen';
+ 
+ import { NavigationContainer } from '@react-navigation/native';
+ import { createNativeStackNavigator } from '@react-navigation/native-stack';
+ 
+ import Home from "./Home.js";
+ import LogIn from "./LogIn.js";
+ import AccountView from "./AccountView.js";
+ import Achievement from "./components/Achievement.js";
+ 
+ const Section = ({children, title}): Node => {
+   const isDarkMode = useColorScheme() === 'dark';
+   return (
+     <View style={styles.sectionContainer}>
+       <Text
+         style={[
+           styles.sectionTitle,
+           {
+             color: isDarkMode ? Colors.white : Colors.black,
+           },
+         ]}>
+         {title}
+       </Text>
+       <Text
+         style={[
+           styles.sectionDescription,
+           {
+             color: isDarkMode ? Colors.light : Colors.dark,
+           },
+         ]}>
+         {children}
+       </Text>
+     </View>
+   );
+ };
+ 
+ const Stack = createNativeStackNavigator();
+ 
+ const App = () => {
+ 
+   return (
+     <NavigationContainer>
+         <Stack.Navigator>
+            <Stack.Screen name="LogIn" component={LogIn} options={{ title: 'NeverOvertime' }}/>
+            <Stack.Screen name="Home" component={Home} options={{ title: 'NeverOvertime' }}/>
+            <Stack.Screen name="AccountView" component={AccountView} options={{ title: 'Profile' }}/>
+            <Stack.Screen name="Achievement" component={Achievement} options={ {title: 'Achievement'}} />
+         </Stack.Navigator>
+     </NavigationContainer>
+   );
+ };
+ 
+ const styles = StyleSheet.create({
+   sectionContainer: {
+     marginTop: 32,
+     paddingHorizontal: 24,
+   },
+   sectionTitle: {
+     fontSize: 24,
+     fontWeight: '600',
+   },
+   sectionDescription: {
+     marginTop: 8,
+     fontSize: 18,
+     fontWeight: '400',
+   },
+   highlight: {
+     fontWeight: '700',
+   },
+ });
+ 
+ export default App;
