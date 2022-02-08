@@ -22,7 +22,7 @@ function AccountView ({ navigation }) {
           <Text>View Profile</Text>
 
           <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
-          <Button title="Delete Account" onPress={() => navigation.navigate('LogIn')}/>
+          <Button title="Delete Account" onPress={() => navigation.popToTop('LogIn')}/>
     </View>
   );
 }
