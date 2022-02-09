@@ -34,6 +34,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from "./Home.js";
 import LogIn from "./LogIn.js";
 import AccountView from "./AccountView.js";
+import SignUp from "./signup.js";
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -71,6 +72,7 @@ const App = () => {
             <Stack.Screen name="LogIn" component={LogIn} options={{ title: 'NeverOvertime' }}/>
             <Stack.Screen name="Home" component={Home} options={{ title: 'NeverOvertime' }}/>
             <Stack.Screen name="AccountView" component={AccountView} options={{ title: 'Profile' }}/>
+            <Stack.Screen name="SignUp" component={SignUp} options={{ title: 'NeverOvertime' }}/>
 
         </Stack.Navigator>
     </NavigationContainer>
