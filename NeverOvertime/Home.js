@@ -21,6 +21,7 @@ function Home ({ navigation, route }) {
       <Text>Home Screen</Text>
       <Button title="View Profile" onPress={() => navigation.push('AccountView')} />
       <Button title="Logout" onPress={() => navigation.popToTop()} />
+      <Button title="Achievement" onPress={() => navigation.navigate('Achievement')} />
     </View>
   );
 }
