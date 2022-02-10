@@ -25,17 +25,6 @@ function Achievement({}) {
     {text: '20th time Bankrupt', prize: 'Reward $16,000', key : 20},
   ])
 
-  const [show_Hide, setShowHide] = useState('flex');
-  
-  const letToggle = () => {
- 
-    if (show_Hide === 'flex') {
-      setShowHide('none');
-    } else {
-      setShowHide('flex');
-    }
-  }
-
 
     return (
       <View style={styles.container}>
@@ -45,15 +34,13 @@ function Achievement({}) {
         <View style={styles.listcontainer}>
           <Text style={styles.message}>Click on the achievement to claim reward</Text>
           <View style={styles.list}>
-          <Image source={require('./assets/achievement_star.png')} />;
             <FlatList 
               /*keyExtractor={(item) => item.text} if key property is change to another id*/
               /*In TouchableOpacity, missing onPress property because achievement system has not set up yet */
               data={achievement}
               renderItem={({ item }) => (
                 <TouchableOpacity >
-
-                  <View style={styles.item} onPress={letToggle}>
+                  <View style={styles.item}>
                     <Text >{item.prize}</Text>
                     <Text >{item.text}</Text>
                   </View>
