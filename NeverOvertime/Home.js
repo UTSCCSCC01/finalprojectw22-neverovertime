@@ -20,8 +20,8 @@ function Home ({ navigation, route }) {
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Home Screen</Text>
       <Button title="View Profile" onPress={() => navigation.push('AccountView')} />
-      <Button title="Logout" onPress={() => navigation.popToTop()} />
       <Button title="Achievement" onPress={() => navigation.navigate('Achievement')} />
+      <Button title="Logout" onPress={() => navigation.popToTop()} />
     </View>
   );
 }
