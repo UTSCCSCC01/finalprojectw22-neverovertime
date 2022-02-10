@@ -16,15 +16,15 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-function LogIn ({ navigation }) {
+function SignUp ({ navigation }) {
   return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>Log In</Text>
+            <Text>SignUp</Text>
 
-            <Button title="Log In" onPress={() => navigation.navigate('Home')} />
-            <Button title="SignUp" onPress={() => navigation.navigate('SignUp')} />
+            <Button title="Submit" onPress={() => navigation.navigate('SignUp')} />
+            <Button title="Back" onPress={() => navigation.popToTop()} />
       </View>
     );
 }
 
-export default LogIn;
+export default SignUp;
