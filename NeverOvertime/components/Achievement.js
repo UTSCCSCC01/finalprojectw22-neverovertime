@@ -25,17 +25,6 @@ function Achievement({}) {
     {text: '20th time Bankrupt', prize: 'Reward $16,000', key : 20},
   ])
 
-  const [show_Hide, setShowHide] = useState('flex');
-  
-  const letToggle = () => {
- 
-    if (show_Hide === 'flex') {
-      setShowHide('none');
-    } else {
-      setShowHide('flex');
-    }
-  }
-
 
     return (
       <View style={styles.container}>
@@ -52,8 +41,7 @@ function Achievement({}) {
               data={achievement}
               renderItem={({ item }) => (
                 <TouchableOpacity >
-
-                  <View style={styles.item} onPress={letToggle}>
+                  <View style={styles.item}>
                     <Text >{item.prize}</Text>
                     <Text >{item.text}</Text>
                   </View>
