@@ -1,21 +1,20 @@
 import React from 'react';
 import type {Node} from 'react';
+import { StyleSheet, View, FlatList, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import {
   SafeAreaView,
   ScrollView,
   StatusBar,
-  StyleSheet,
   Section,
   Text,
   TextInput,
   useColorScheme,
-  View,
   Button,
-  Alert,
   Title,
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 
 
 
@@ -25,6 +24,10 @@ function LogIn ({ navigation }) {
   const [text2, ChangeText2] = React.useState(null);
 
   return (
+  <TouchableWithoutFeedback onPress={() => {
+          Keyboard.dismiss();
+          console.log('dismissed');
+          }}>
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Text>Log In</Text>
             <TextInput
@@ -42,6 +45,7 @@ function LogIn ({ navigation }) {
             <Button title="Log In" onPress={() => navigation.navigate('Home')} />
             <Button title="SignUp" onPress={() => navigation.navigate('SignUp')} />
       </View>
+      </TouchableWithoutFeedback>
     );
 }
 
