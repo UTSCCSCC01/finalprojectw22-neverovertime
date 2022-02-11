@@ -20,7 +20,7 @@ function AccountView ({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <Text>View Profile</Text>
-          <Text>Username : Elena</Text>
+          <Text>Username : cory</Text>
           <Text>Account Status : Active</Text>
           <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
           <Button title="Delete Account" onPress={() => navigation.popToTop('LogIn')}/>
