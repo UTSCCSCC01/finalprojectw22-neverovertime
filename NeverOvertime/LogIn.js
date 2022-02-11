@@ -52,7 +52,6 @@ function LogIn ({ navigation }) {
               value={text1}
               placeholder="Username"
             />
-            <Text>{text1}</Text>
             <TextInput
               style={box.input}
               onChangeText={ChangeText2}
