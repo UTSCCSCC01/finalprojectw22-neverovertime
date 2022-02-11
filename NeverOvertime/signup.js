@@ -19,6 +19,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 function SignUp ({ navigation }) {
             const [text1, ChangeText1] = React.useState(null);
             const [text2, ChangeText2] = React.useState(null);
+            const [text3, ChangeText3] = React.useState(null);
   return (
         <TouchableWithoutFeedback onPress={() => {
         Keyboard.dismiss();
@@ -26,6 +27,12 @@ function SignUp ({ navigation }) {
         }}>
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Text>SignUp</Text>
+                        <TextInput
+                         style={box.input}
+                         onChangeText={ChangeText3}
+                         value={text3}
+                         placeholder="username"
+                                                />
                         <TextInput
                           style={box.input}
                           onChangeText={ChangeText1}
@@ -38,7 +45,7 @@ function SignUp ({ navigation }) {
                           value={text2}
                           placeholder="Password"
                         />
-            <Button title="Submit" onPress={() => navigation.navigate('SignUp')} />
+            <Button title="Submit" onPress={() => navigation.navigate('Home')} />
             <Button title="Back" onPress={() => navigation.popToTop()} />
       </View>
       </TouchableWithoutFeedback>
