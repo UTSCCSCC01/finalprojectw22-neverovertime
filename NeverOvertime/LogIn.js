@@ -15,13 +15,29 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-
+//import checkPass from "./CheckPassword";
 
 
 function LogIn ({ navigation }) {
 
   const [text1, ChangeText1] = React.useState(null);
   const [text2, ChangeText2] = React.useState(null);
+
+  const loginUser = (word1, word2) => {
+    if (word1 == 'cory'){
+      if (word2 == '1234'){
+        navigation.navigate('Home')
+      } else {
+        Alert.alert(
+          '', "Wrong password"
+          );
+      }
+    } else {
+      Alert.alert(
+        '', "username does not exist"
+        );
+    }
+  };
 
   return (
   <TouchableWithoutFeedback onPress={() => {
@@ -36,13 +52,15 @@ function LogIn ({ navigation }) {
               value={text1}
               placeholder="Username"
             />
+            <Text>{text1}</Text>
             <TextInput
               style={box.input}
               onChangeText={ChangeText2}
               value={text2}
               placeholder="Password"
             />
-            <Button title="Log In" onPress={() => navigation.navigate('Home')} />
+            
+            <Button title="Log In" onPress={() => loginUser(text1, text2)} />
             <Button title="SignUp" onPress={() => navigation.navigate('SignUp')} />
       </View>
       </TouchableWithoutFeedback>
