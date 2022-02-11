@@ -34,7 +34,6 @@ function Achievement({}) {
         <View style={styles.listcontainer}>
           <Text style={styles.message}>Click on the achievement to claim reward</Text>
           <View style={styles.list}>
-          <Image source={require('../assets/achievement_star.png')} />;
             <FlatList 
               /*keyExtractor={(item) => item.text} if key property is change to another id*/
               /*In TouchableOpacity, missing onPress property because achievement system has not set up yet */
