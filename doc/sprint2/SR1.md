@@ -1,10 +1,12 @@
-Participation
+## Sprint 1 Retrospective
+
+### Participants
 
 Cory Heisterberg, Brandon Timm, Lida Xia, Honglei Song, Ruxiao Li, Shengjie Zou, Sifeng Wang 
 
 ______________________________________________________________________________________________
 
-Good Practices 
+### Good Practices 
 
 •	Having frequent meeting and stand up
 
@@ -12,9 +14,21 @@ Good Practices
 
 •	Assist each other when someone faces problem
 
+_______________________________________________________________________________________________
+
+### New Practices to follow for future sprint
+
+•	Go over the marking rubric together as a team in a meeting
+
+•	Sufficient documentation for completed features
+
+•	Remember to clearly defined acceptance criteria
+
 ______________________________________________________________________________________________
 
-Trouble Faced in Sprint 1
+### Best/worst experience during sprint 1
+
+#### Trouble Faced in Sprint 1
 
 •	At the start of the project, team members had difficulties setting up the environment
 
@@ -22,13 +36,7 @@ Trouble Faced in Sprint 1
 
 •	Forgetting to include documents for frontend and backend system
 
+#### Success in Sprint 1
+
+•	Everyone was able to complete their assigned task for the sprint in the end
 _______________________________________________________________________________________________
-
-New Practices to follow for future sprint
-
-•	Go over the marking rubric together as a team in a meeting
-
-•	Begin commit message with task number
-
-•	Remember to clearly defined acceptance criteria
-
