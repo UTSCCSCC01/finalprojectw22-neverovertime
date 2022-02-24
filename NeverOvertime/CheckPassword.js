@@ -13,3 +13,5 @@ function checkPass(name,password){
         return 2; //Password Incorrect
     }
 }
+
+module.exports = {checkPass}
