@@ -4,5 +4,3 @@ function checkBal(name){
 }
 
 module.exports = {checkBal}
-
-console.log(checkBal("aaa"));
