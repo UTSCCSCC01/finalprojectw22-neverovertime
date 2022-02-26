@@ -1,3 +1,5 @@
+import Deck from "react-poker";
+import "react-poker/styles.css"
 import React from 'react';
 import type {Node} from 'react';
 import {
@@ -15,16 +17,15 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-function Home ({ navigation, route }) {
+function GamePage ({ navigation, route }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
-      <Button title="View Profile" onPress={() => navigation.push('AccountView')} />
-      <Button title="Achievement" onPress={() => navigation.navigate('Achievement')} />
-      <Button title="play" onPress={() => navigation.navigate('GamePage')} />
-      <Button title="Logout" onPress={() => navigation.popToTop()} />
+
+
+
     </View>
   );
 }
 
-export default Home;
+
+export default GamePage;

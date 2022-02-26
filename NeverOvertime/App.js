@@ -36,6 +36,8 @@ import LogIn from "./LogIn.js";
 import AccountView from "./AccountView.js";
 import Achievement from "./components/Achievement.js";
 import SignUp from "./signup.js";
+import  GamePage from "./GamePage.js";
+
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -74,7 +76,8 @@ const App = () => {
             <Stack.Screen name="Home" component={Home} options={{ title: 'NeverOvertime' }}/>
             <Stack.Screen name="AccountView" component={AccountView} options={{ title: 'Profile' }}/>
             <Stack.Screen name="SignUp" component={SignUp} options={{ title: 'NeverOvertime' }}/>
-            <Stack.Screen name="Achievement" component={Achievement} options={ {title: 'Achievement'}} />
+            <Stack.Screen name="GamePage" component={GamePage} options={ {title: 'GamePage'}} />
+
 
         </Stack.Navigator>
     </NavigationContainer>
