@@ -15,16 +15,27 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-function Home ({ navigation, route }) {
+//import drawCard from "./DrawCard.js";
+
+
+function GamePage ({ navigation, route }) {
+    function drawCard(){
+        Alert.alert(
+          "Drawing Cards is yet to be implemented", "Click OK",
+          [
+            {text: "OK"}
+          ]
+        )
+    }
+    
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
-      <Button title="View Profile" onPress={() => navigation.push('AccountView')} />
-      <Button title="Achievement" onPress={() => navigation.navigate('Achievement')} />
-      <Button title="Logout" onPress={() => navigation.popToTop()} />
-      <Button title="GamePage" onPress={() => navigation.navigate('GamePage')} />
+      <Text>GamePage</Text>
+      <Button title="Draw Cards" onPress={() => drawCard()
+          } />
+
     </View>
   );
 }
 
-export default Home;
+export default GamePage;
