@@ -23,6 +23,7 @@ function Home ({ navigation, route }) {
       <Button title="Achievement" onPress={() => navigation.navigate('Achievement')} />
       <Button title="play" onPress={() => navigation.navigate('GamePage')} />
       <Button title="Logout" onPress={() => navigation.popToTop()} />
+      <Button title="GamePage" onPress={() => navigation.navigate('GamePage')} />
     </View>
   );
 }

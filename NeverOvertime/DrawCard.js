@@ -1,7 +1,3 @@
-
-import Deck from "react-poker";
-import "react-poker/styles.css"
-
 import React from 'react';
 import type {Node} from 'react';
 import {
@@ -19,16 +15,12 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+function drawCard(){
+    Alert.alert(
+      "Drawing Cards is yet to be implemented", "Click OK",
+      [
+        {text: "OK"}
+      ]
+    )
+}
 
-function GamePage ({ navigation, route }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-
-
-
-
-    </View>
-  );
-
-
-export default GamePage;

@@ -39,6 +39,7 @@ import SignUp from "./signup.js";
 import  GamePage from "./GamePage.js";
 
 
+
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
@@ -76,7 +77,9 @@ const App = () => {
             <Stack.Screen name="Home" component={Home} options={{ title: 'NeverOvertime' }}/>
             <Stack.Screen name="AccountView" component={AccountView} options={{ title: 'Profile' }}/>
             <Stack.Screen name="SignUp" component={SignUp} options={{ title: 'NeverOvertime' }}/>
+
             <Stack.Screen name="GamePage" component={GamePage} options={ {title: 'GamePage'}} />
+
 
 
         </Stack.Navigator>
