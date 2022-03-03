@@ -1,15 +1,10 @@
 
 import React, { useState } from 'react';
-import one from "./images/chip/1.png"
-import five from "./images/chip/5.png"
-import twentyFive from "./images/chip/25.png"
-import oneHundred from "./images/chip/100.png"
-import fiveHundred from "./images/chip/500.png"
 import { TouchableOpacity, View, StyleSheet, Image, Button , Text} from "react-native"
 
 
 
-export default function Chips(props) {
+export default function Bet() {
 
     
     // let totalBank = props.totalBank
@@ -69,12 +64,8 @@ export default function Chips(props) {
                 <TouchableOpacity onPress={() =>addbet(500)}>
                     <Image source={require("./images/chip/500.png")} style = {styles.ImageClass}/>
                 </TouchableOpacity>
-            </View>
-                
-            
-            
-        </View>
-          
+            </View>   
+        </View> 
     )
 }
 
@@ -82,7 +73,7 @@ const styles = StyleSheet.create(
 {
     Container: {
         flex: 1,
-        backgroundColor : '#FFF8E1', 
+        backgroundColor : 'pink', 
         
     },
     ImageContainer:{
@@ -90,8 +81,7 @@ const styles = StyleSheet.create(
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         alignItems: 'center',
-        backgroundColor: 'blue',
-        
+        // backgroundColor: 'blue',        
     },
     BoxContainer: {
         flex: 7,
@@ -103,25 +93,26 @@ const styles = StyleSheet.create(
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         alignItems: 'center',
-        backgroundColor: 'purple'
+        // backgroundColor: 'purple'
     },
     TextContainer: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         alignItems: 'center',
-        backgroundColor: 'yellow',
+        // backgroundColor: 'yellow',
         color: 'dark black'
     },
     ImageClass: {
         width: 50,
-        height: 50
+        height: 60
     },
     Button: {
         width: 120,
     },
     TextField: {
-        fontSize: 20
+        fontSize: 20,
+        color: 'black'
     }
 }
 )

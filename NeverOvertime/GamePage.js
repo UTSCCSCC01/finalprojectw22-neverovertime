@@ -15,9 +15,12 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {Card, Deck} from "./CardDeck.js";
-
+import {Chips} from "./Bet.js";
 
 let deck = new Deck();
+// const chip=()=>{
+//   Chips()
+// }
 
 function GamePage ({ navigation, route }) {
     function drawCard(){
@@ -35,8 +38,8 @@ function GamePage ({ navigation, route }) {
       <Text>GamePage</Text>
       <Button title="Draw Cards" onPress={() => drawCard()
           } />
-
-    </View>
+      <Button title="Bet" onPress={() => navigation.navigate('Bet')} />
+      </View>
   );
 }
 
