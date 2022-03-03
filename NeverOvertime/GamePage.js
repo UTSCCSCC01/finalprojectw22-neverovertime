@@ -16,6 +16,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {Card, Deck} from "./CardDeck.js";
 import {Chips} from "./Bet.js";
+//import {myCard} from "./DrawCard.js";
 
 let deck = new Deck();
 // const chip=()=>{
@@ -24,9 +25,13 @@ let deck = new Deck();
 
 function GamePage ({ navigation, route }) {
 
-    deck.shuffle()
-    var firstCard = deck.dealCard()
-    var secondCard = deck.dealCard()
+
+    const firstCard = deck.dealCard()
+    const secondCard = deck.dealCard()
+
+    const myCard = [];
+    myCard.push(firstCard);
+    myCard.push(secondCard); //push to a list
 
     function cardValue(card){
       
@@ -45,6 +50,7 @@ function GamePage ({ navigation, route }) {
       var total = 0
       total += cardValue(firstCard)
       total += cardValue(secondCard)
+      //total += cardValue(card)
 
       return total
 
@@ -71,13 +77,15 @@ function GamePage ({ navigation, route }) {
 
     
     function drawCard(){
-      // let deck = new Deck();
 
-      //   let card = deck.dealCard
-      //   let suit = card.suit
-      //   let rank = card.rank
+      let deck = new Deck();
+      const card = deck.dealCard()
+      let suit = card.suit
+      let rank = card.rank
+      myCard.push(deck);
+      return card
 
-        return 1
+
     }
 
   return (
@@ -116,6 +124,11 @@ function GamePage ({ navigation, route }) {
       <Button title="Draw Cards" onPress={() => drawCard()} />
       <Button title="Bet" onPress={() => navigation.navigate('Bet')} />
       <Text>Balance: 1000</Text>
+      <Text style={{ fontSize: 20 }}>draw card</Text>
+      <Text>{drawCard.rank}</Text>
+      <Text> of </Text>
+      <Text>{drawCard.suit}</Text>
+      {displayNewCard()}
 
       </View>
   );

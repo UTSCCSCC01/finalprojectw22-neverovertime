@@ -14,13 +14,13 @@ import {
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {Card, Deck} from "./CardDeck.js";
 
-function drawCard(){
-    Alert.alert(
-      "Drawing Cards is yet to be implemented", "Click OK",
-      [
-        {text: "OK"}
-      ]
-    )
+function drawCard({ navigation, route }){
+    var bag = [];
+    myCard = new newDeck();
+    myCard.shuffle();
+    myCard.dealCard()
+    return this.myCard.pop();
 }
 
