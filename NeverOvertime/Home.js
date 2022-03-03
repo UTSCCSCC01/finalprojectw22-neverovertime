@@ -18,13 +18,14 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 function Home ({ navigation, route }) {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
-      <Button title="View Profile" onPress={() => navigation.push('AccountView')} />
-      <Button title="Achievement" onPress={() => navigation.navigate('Achievement')} />
-      <Button title="Logout" onPress={() => navigation.popToTop()} />
-      <Button title="GamePage" onPress={() => navigation.navigate('GamePage')} />
-      <Text>Balance: 1000</Text>
+
+    <View  style={{flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <Text>Home Screen</Text>
+          <Button title="View Profile" onPress={() => navigation.push('AccountView')} />
+          <Button title="Achievement" onPress={() => navigation.navigate('Achievement')} />
+          <Button title="Logout" onPress={() => navigation.popToTop()} />
+          <Button title="GamePage" onPress={() => navigation.navigate('GamePage')} />
+          <Text>Balance: 1000</Text>
     </View>
   );
 }

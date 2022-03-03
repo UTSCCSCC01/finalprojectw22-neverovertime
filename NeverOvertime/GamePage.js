@@ -35,6 +35,7 @@ function GamePage ({ navigation, route }) {
       <Text>GamePage</Text>
       <Button title="Draw Cards" onPress={() => drawCard()
           } />
+      <Text>Balance: 1000</Text>
 
     </View>
   );
