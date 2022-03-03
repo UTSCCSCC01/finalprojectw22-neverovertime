@@ -113,9 +113,10 @@ function GamePage ({ navigation, route }) {
       <Text></Text>
       <Text></Text>
       <Text></Text>
-      <Button title="Draw Cards" onPress={() => drawCard()
-          } />
+      <Button title="Draw Cards" onPress={() => drawCard()} />
       <Button title="Bet" onPress={() => navigation.navigate('Bet')} />
+      <Text>Balance: 1000</Text>
+
       </View>
   );
 }
