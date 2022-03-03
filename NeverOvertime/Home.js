@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+//import { checkBal } from './EditBalance.js';
 
 function Home ({ navigation, route }) {
   return (
@@ -23,6 +24,7 @@ function Home ({ navigation, route }) {
       <Button title="Achievement" onPress={() => navigation.navigate('Achievement')} />
       <Button title="Logout" onPress={() => navigation.popToTop()} />
       <Button title="GamePage" onPress={() => navigation.navigate('GamePage')} />
+      <Text>Balance: 1000</Text>
     </View>
   );
 }
