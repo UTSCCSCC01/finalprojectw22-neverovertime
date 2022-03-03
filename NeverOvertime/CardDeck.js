@@ -33,12 +33,10 @@ export class Deck {
     }
 }
 
-export function newDeck() {
+function newDeck() {
     return SUITS.flatMap(suit => {
         return RANKS.map(rank => {
             return new Card(rank, suit)
         })
     })
 }
-
-module.exports = {newDeck}
