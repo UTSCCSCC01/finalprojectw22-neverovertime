@@ -1,4 +1,6 @@
 const fs = require('fs');
+
+/* Validates the password is correct for the user name. */
 function checkPass(name,password){
     if (!fs.existsSync('./profiles/' + name + '.json')){
         return 1 //No username found

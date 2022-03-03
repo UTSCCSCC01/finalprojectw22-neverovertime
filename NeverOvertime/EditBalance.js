@@ -1,4 +1,6 @@
 const fs = require('fs');
+
+/* Adds amount to the profile balance of user name. */
 function addBal(name,amount){
     var currBal = checkBal(name);
     var newBal = {
@@ -14,6 +16,7 @@ function addBal(name,amount){
     return 0; //Success
 }
 
+/* Removes amount to the profile balance of user name. */
 function subBal(name,amount){
     var currBal = checkBal(name);
     if (currBal < amount){
@@ -32,6 +35,7 @@ function subBal(name,amount){
     return 0; //Success
 }
 
+/* Returns the amount in the profile balance of user name. */
 function checkBal(name){
     var bal = require('./balances/' + name + '.json');
     return bal.balance;

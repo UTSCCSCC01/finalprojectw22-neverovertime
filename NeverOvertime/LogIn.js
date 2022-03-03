@@ -17,7 +17,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 //import checkPass from "./CheckPassword";
 
-
+/* Defines the Log In page view. */
 function LogIn ({ navigation }) {
 
   const [text1, ChangeText1] = React.useState(null);
