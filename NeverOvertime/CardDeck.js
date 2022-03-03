@@ -18,7 +18,7 @@ export class Deck {
     }
 
     shuffle(){
-        for (let i = 0; i < this.cardNumber - 1; i++){
+        for (let i = 0; i < this.cardNumber; i++){
             const newIndex = Math.floor(Math.random() * (i+1))
             const oldRank = this.cards[newIndex]
             this.cards[newIndex] = this.cards[i]
