@@ -1,9 +1,7 @@
-
 import React, { useState } from 'react';
 import { TouchableOpacity, View, StyleSheet, Image, Button , Text} from "react-native"
 
-
-
+/* Defines betting features and the view to bet currency and view bet in-game. */
 export default function Bet() {
 
     

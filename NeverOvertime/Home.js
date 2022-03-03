@@ -16,6 +16,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 //import { checkBal } from './EditBalance.js';
 
+/* Defines the Home page view. */
 function Home ({ navigation, route }) {
   return (
 
