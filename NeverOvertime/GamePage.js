@@ -14,19 +14,20 @@ import {
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {Card, Deck} from "./CardDeck.js";
 
 
-//import drawCard from "./DrawCard.js";
-
+let deck = new Deck();
 
 function GamePage ({ navigation, route }) {
     function drawCard(){
-        Alert.alert(
-          "Drawing Cards is yet to be implemented", "Click OK",
-          [
-            {text: "OK"}
-          ]
-        )
+      // let deck = new Deck();
+
+      //   let card = deck.dealCard
+      //   let suit = card.suit
+      //   let rank = card.rank
+
+        return 1
     }
     
   return (
