@@ -57,7 +57,6 @@ function GamePage ({ navigation, route }) {
 
     /* Defines the view of each card. */
     function displayNewCard(){
-      console.log(check);
 
       if (check < 17){
 
@@ -74,11 +73,6 @@ function GamePage ({ navigation, route }) {
 
     /* Draws a card from the deck. */
     function drawCard(){
-      // let deck = new Deck();
-
-      //   let card = deck.dealCard
-      //   let suit = card.suit
-      //   let rank = card.rank
 
         return 1
     }
@@ -113,10 +107,11 @@ function GamePage ({ navigation, route }) {
       <Text></Text>
       <Text></Text>
       <Text></Text>
-      <Text></Text>
-      <Text></Text>
-      <Text></Text>
       <Button title="Draw Cards" onPress={() => drawCard()} />
+      <Text></Text>
+      <Text></Text>
+      <Text></Text>
+      <Text></Text>
       <Button title="Bet" onPress={() => navigation.navigate('Bet')} />
       <Text>Balance: 1000</Text>
 
