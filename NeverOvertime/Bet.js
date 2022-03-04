@@ -18,6 +18,9 @@ export default function Bet() {
 
     return (
         <View style = {styles.Container}>
+            <Text style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                  Current Bet : {betAmount}
+            </Text>
             <View style={styles.BoxContainer}>
             {/* Empty Container to push other to the bottom of the screen */}
             </View>
@@ -42,6 +45,8 @@ export default function Bet() {
                     Bank Balance : {betAmount} 
                     {/* replace betAmount with bank balance from user */}
                 </Text>
+
+
                 <Text style={styles.TextField}>
                     Total Bet : {betAmount}
                 </Text>
