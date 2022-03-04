@@ -23,6 +23,7 @@ Subtasks:
 
 - NEV-41 - Create Deck of Cards
 - NEV-42 - View Cards Drawn
+- NEV-51 - Documentation
 
 User Story: NEV-6 (Draw New Cards)
 
