@@ -1,4 +1,6 @@
 const fs = require('fs');
+
+/* Creates a new profile and saves the name and password of the user. */
 function createP(name,password){
     if (!fs.existsSync('./profiles')){
         fs.mkdirSync('./profiles');
@@ -8,7 +10,7 @@ function createP(name,password){
         return 1; //Profile already exists
     }
     const newProfile = {
-        "password": password
+        "password": password**
     };
     const jsonString = JSON.stringify(newProfile);
 
@@ -21,6 +23,7 @@ function createP(name,password){
     return 0; //Success
 }
 
+/* Creates a new balance for user name. */
 function createBal(name){
     if (!fs.existsSync('./balances')){
         fs.mkdirSync('./balances');

@@ -23,6 +23,7 @@ let deck = new Deck();
 //   Chips()
 // }
 
+/* Defines the view for playing Black Jack. */
 function GamePage ({ navigation, route }) {
 
 
@@ -37,6 +38,7 @@ function GamePage ({ navigation, route }) {
     myCard.push(firstCard);
     myCard.push(secondCard); //push to a list
 
+    /* Defines how to evaluate the value of a card in Black Jack. */
     function cardValue(card){
       
       if (card.rank == 'J' || card.rank == 'Q'|| card.rank == 'K'){
@@ -49,6 +51,7 @@ function GamePage ({ navigation, route }) {
       return value
     }
 
+    /* Evaluates the opponent cards. */
     function dealerStartCards(){
       
       var total = 0
@@ -62,6 +65,7 @@ function GamePage ({ navigation, route }) {
 
     var check = dealerStartCards()
 
+    /* Defines the view of each card. */
     function displayNewCard(){
       console.log(check);
 
@@ -78,8 +82,7 @@ function GamePage ({ navigation, route }) {
 
     }
 
-
-    
+    /* Draws a card from the deck. */
     function drawCard(){
 
       let deck = new Deck();

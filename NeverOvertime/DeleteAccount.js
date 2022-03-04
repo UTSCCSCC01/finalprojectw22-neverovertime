@@ -1,4 +1,6 @@
 const fs = require('fs');
+
+/* Deletes the user profile of user name. */
 function deleteAccount(name){
     if (!fs.existsSync('./profiles')){
         fs.mkdirSync('./profiles');

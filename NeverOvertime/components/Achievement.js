@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, View, Text, StyleSheet, FlatList, TouchableOpacity, Image } from 'react-native';
 
+/* Defines all the achievements and view for the achievement page. */
 function Achievement({}) {
   const [achievement, setAchievement] = useState([
     {text: 'Win 1 round of blackjack', prize: 'Reward $10', key : 1}, /* no key property and any other; change in Flatlist*/

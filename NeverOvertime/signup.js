@@ -15,7 +15,7 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-
+/* Defines the Sign Up page view. */
 function SignUp ({ navigation }) {
             const [text1, ChangeText1] = React.useState(null);
             const [text2, ChangeText2] = React.useState(null);
