@@ -26,8 +26,12 @@ let deck = new Deck();
 function GamePage ({ navigation, route }) {
 
 
-    const firstCard = deck.dealCard()
-    const secondCard = deck.dealCard()
+    deck.shuffle()
+        var firstCard = deck.dealCard()
+        var secondCard = deck.dealCard()
+
+        var playerFirstCard = deck.dealCard()
+        var playerSecondCard = deck.dealCard()
 
     const myCard = [];
     myCard.push(firstCard);
@@ -83,7 +87,7 @@ function GamePage ({ navigation, route }) {
       let suit = card.suit
       let rank = card.rank
       myCard.push(deck);
-      return card
+      return <Text><Text> | </Text><Text>{card.rank}</Text><Text> of </Text><Text>{card.suit}</Text></Text>
 
 
     }
@@ -124,11 +128,16 @@ function GamePage ({ navigation, route }) {
       <Button title="Draw Cards" onPress={() => drawCard()} />
       <Button title="Bet" onPress={() => navigation.navigate('Bet')} />
       <Text>Balance: 1000</Text>
-      <Text style={{ fontSize: 20 }}>draw card</Text>
-      <Text>{drawCard.rank}</Text>
-      <Text> of </Text>
-      <Text>{drawCard.suit}</Text>
-      {displayNewCard()}
+      <Text style={{ fontSize: 20 }}>Player's Hand</Text>
+            <Text>
+              <Text>{playerFirstCard.rank}</Text>
+              <Text> of </Text>
+              <Text>{playerFirstCard.suit}</Text>
+              <Text> | </Text>
+              <Text>{playerSecondCard.rank}</Text>
+              <Text> of </Text>
+              <Text>{playerSecondCard.suit}</Text>
+      </Text>
 
       </View>
   );
