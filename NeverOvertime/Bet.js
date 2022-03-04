@@ -18,7 +18,7 @@ export default function Bet() {
 
     return (
         <View style = {styles.Container}>
-            <Text style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <Text style={styles.TextField}>
                   Current Bet : {betAmount}
             </Text>
             <View style={styles.BoxContainer}>
