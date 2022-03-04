@@ -17,7 +17,8 @@
     "react-native": "^0.67.2",
     "react-native-popup-dialog": "^0.18.3",
     "react-native-safe-area-context": "^3.3.2",
-    "react-native-screens": "^3.10.2"
+    "react-native-screens": "^3.10.2",
+    "react-poker": "^0.0.77"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

@@ -16,6 +16,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {Card, Deck} from "./CardDeck.js";
 import {Chips} from "./Bet.js";
+//import {myCard} from "./DrawCard.js";
 
 let deck = new Deck();
 // const chip=()=>{
@@ -25,9 +26,17 @@ let deck = new Deck();
 /* Defines the view for playing Black Jack. */
 function GamePage ({ navigation, route }) {
 
+
     deck.shuffle()
-    var firstCard = deck.dealCard()
-    var secondCard = deck.dealCard()
+        var firstCard = deck.dealCard()
+        var secondCard = deck.dealCard()
+
+        var playerFirstCard = deck.dealCard()
+        var playerSecondCard = deck.dealCard()
+
+    const myCard = [];
+    myCard.push(firstCard);
+    myCard.push(secondCard); //push to a list
 
     /* Defines how to evaluate the value of a card in Black Jack. */
     function cardValue(card){
@@ -48,6 +57,7 @@ function GamePage ({ navigation, route }) {
       var total = 0
       total += cardValue(firstCard)
       total += cardValue(secondCard)
+      //total += cardValue(card)
 
       return total
 
@@ -74,7 +84,16 @@ function GamePage ({ navigation, route }) {
     /* Draws a card from the deck. */
     function drawCard(){
 
-        return 1
+
+      let deck = new Deck();
+      const card = deck.dealCard()
+      let suit = card.suit
+      let rank = card.rank
+      myCard.push(deck);
+      return <Text><Text> | </Text><Text>{card.rank}</Text><Text> of </Text><Text>{card.suit}</Text></Text>
+
+
+
     }
 
   return (
@@ -114,6 +133,16 @@ function GamePage ({ navigation, route }) {
       <Text></Text>
       <Button title="Bet" onPress={() => navigation.navigate('Bet')} />
       <Text>Balance: 1000</Text>
+      <Text style={{ fontSize: 20 }}>Player's Hand</Text>
+            <Text>
+              <Text>{playerFirstCard.rank}</Text>
+              <Text> of </Text>
+              <Text>{playerFirstCard.suit}</Text>
+              <Text> | </Text>
+              <Text>{playerSecondCard.rank}</Text>
+              <Text> of </Text>
+              <Text>{playerSecondCard.suit}</Text>
+      </Text>
 
       </View>
   );
