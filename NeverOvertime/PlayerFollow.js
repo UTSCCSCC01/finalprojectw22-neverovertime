@@ -54,6 +54,39 @@ function addFollower(name,followerName){
     return 0; //Success
 }
 
+//Removes following followName from name's data
+function removeFollowing(name,followName){
+    if (!fs.existsSync('./followData')){
+        return 4; //Folder not created, profiles can't exist
+    }
+    if (!fs.existsSync('./followData/' + name + '.json')){
+        return 3; //Profile 'name' doesn't exists
+    }
+    if (!fs.existsSync('./followData/' + followName + '.json')){
+        return 2; //Profile 'followName' doesn't exists
+    }
+    var currFollow = checkFollowing(name);
+    var currFollower = checkFollowers(name);
+    if (!currFollow.includes(followName)){
+        return 1; //Not following followName
+    }
+    const index = currFollow.indexOf(followName);
+    currFollow.splice(index, 1);
+    var newFoll = {
+        "following": currFollow,
+        "followers": currFollower
+    };
+    var jsonString = JSON.stringify(newFoll);
+
+    fs.writeFile('./followData/' + name + '.json', jsonString, err => {
+        if (err) {
+            console.log('Error writing file', err);
+        }
+    });
+    removeFollower(followName,name);
+    return 0; //Success
+}
+
 //Returns an array containing the users name is following
 function checkFollowing(name){
     try{
@@ -72,4 +105,4 @@ function checkFollowers(name){
     catch(e){}
 }
 
-module.exports = {addFollowing, addFollower, checkFollowing, checkFollowers}
+module.exports = {addFollowing, addFollower, removeFollowing, checkFollowing, checkFollowers}
