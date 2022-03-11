@@ -44,4 +44,26 @@ function createBal(name){
     return 0; //Success
 }
 
-module.exports = {createP, createBal}
+//Creates a new file for follow data for the user
+function createFollow(name){
+    if (!fs.existsSync('./followData')){
+        fs.mkdirSync('./followData');
+    }
+    if (fs.existsSync('./followData/' + name + '.json')){
+        return 1; //Profile already exists
+    }
+    const newFollow = {
+        "following": [],
+        "followers": []
+    };
+    const jsonString = JSON.stringify(newFollow);
+
+    fs.writeFile('./followData/' + name + '.json', jsonString, err => {
+        if (err) {
+            console.log('Error writing file', err);
+        }
+    });
+    return 0; //Success
+}
+
+module.exports = {createP, createBal, createFollow}
