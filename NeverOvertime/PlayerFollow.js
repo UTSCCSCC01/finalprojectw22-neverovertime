@@ -28,6 +28,29 @@ function addFollowing(name,followName){
             console.log('Error writing file', err);
         }
     });
+    addFollower(followName,name);
+    return 0; //Success
+}
+
+//Adds follower followerName to name's data, called from addFollowing
+function addFollower(name,followerName){
+    var currFollow = checkFollowing(name);
+    var currFollower = checkFollowers(name);
+    if (currFollower.includes(followerName)){
+        return 1; //followerName already a follower
+    }
+    currFollower.push(followerName)
+    var newFoll = {
+        "following": currFollow,
+        "followers": currFollower
+    };
+    var jsonString = JSON.stringify(newFoll);
+
+    fs.writeFile('./followData/' + name + '.json', jsonString, err => {
+        if (err) {
+            console.log('Error writing file', err);
+        }
+    });
     return 0; //Success
 }
 
@@ -49,4 +72,4 @@ function checkFollowers(name){
     catch(e){}
 }
 
-module.exports = {addFollowing, checkFollowing, checkFollowers}
+module.exports = {addFollowing, addFollower, checkFollowing, checkFollowers}
