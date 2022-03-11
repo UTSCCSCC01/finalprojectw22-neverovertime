@@ -87,6 +87,29 @@ function removeFollowing(name,followName){
     return 0; //Success
 }
 
+//Removes follower followerName from name's data, called from removeFollowing
+function removeFollower(name,followerName){
+    var currFollow = checkFollowing(name);
+    var currFollower = checkFollowers(name);
+    if (!currFollower.includes(followerName)){
+        return 1; //followerName not a follower
+    }
+    const index = currFollower.indexOf(followerName);
+    currFollower.splice(index, 1);
+    var newFoll = {
+        "following": currFollow,
+        "followers": currFollower
+    };
+    var jsonString = JSON.stringify(newFoll);
+
+    fs.writeFile('./followData/' + name + '.json', jsonString, err => {
+        if (err) {
+            console.log('Error writing file', err);
+        }
+    });
+    return 0; //Success
+}
+
 //Returns an array containing the users name is following
 function checkFollowing(name){
     try{
@@ -105,4 +128,4 @@ function checkFollowers(name){
     catch(e){}
 }
 
-module.exports = {addFollowing, addFollower, removeFollowing, checkFollowing, checkFollowers}
+module.exports = {addFollowing, addFollower, removeFollowing, removeFollower, checkFollowing, checkFollowers}
