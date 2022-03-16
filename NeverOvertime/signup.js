@@ -20,6 +20,28 @@ function SignUp ({ navigation }) {
             const [text1, ChangeText1] = React.useState(null);
             const [text2, ChangeText2] = React.useState(null);
             const [text3, ChangeText3] = React.useState(null);
+   const signupUser = (word1, word2, word3) => {
+         fetch('http://192.168.0.154:3000/api/user/signup', { //change your ip addressn here
+               method: 'POST', // Here you're saying that you want to make a POST request. Could be any method, like a GET, for example.
+               headers: {
+                   'Content-Type' : 'application/json'
+               },
+               body: JSON.stringify({
+                 "username": word1,
+                 "password": word2,
+                 "email": word3
+               })
+             })
+             .then(response => response.json())
+             .then((serverResponse) => {
+//               console.warn(serverResponse)
+                 if(serverResponse == true){
+                   navigation.navigate('Home')
+                 }else{
+                   Alert.alert('', "User exist");
+                 }
+             })
+     };
   return (
         <TouchableWithoutFeedback onPress={() => {
         Keyboard.dismiss();
@@ -29,14 +51,14 @@ function SignUp ({ navigation }) {
             <Text>SignUp</Text>
                         <TextInput
                          style={box.input}
-                         onChangeText={ChangeText3}
-                         value={text3}
+                         onChangeText={ChangeText1}
+                         value={text1}
                          placeholder="username"
                                                 />
                         <TextInput
                           style={box.input}
-                          onChangeText={ChangeText1}
-                          value={text1}
+                          onChangeText={ChangeText3}
+                          value={text3}
                           placeholder="email address"
                         />
                         <TextInput
@@ -45,7 +67,7 @@ function SignUp ({ navigation }) {
                           value={text2}
                           placeholder="Password"
                         />
-            <Button title="Submit" onPress={() => navigation.navigate('Home')} />
+            <Button title="Submit" onPress={() => signupUser(text1, text2, text3)} />
             <Button title="Back" onPress={() => navigation.popToTop()} />
       </View>
       </TouchableWithoutFeedback>
