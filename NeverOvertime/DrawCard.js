@@ -19,10 +19,10 @@ import {Card, Deck} from "./CardDeck.js";
 
 function drawCard({ navigation, route }){
     var bag = [];
-    myCard = new newDeck();
-    myCard.shuffle();
-    myCard.dealCard()
-    return this.myCard.pop();
+    dealerCard = new newDeck();
+    dealerCard.shuffle();
+    dealerCard.dealCard()
+    return this.dealerCard.pop();
 
 }
 
