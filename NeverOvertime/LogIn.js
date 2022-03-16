@@ -23,7 +23,7 @@ function LogIn ({ navigation }) {
   const [text1, ChangeText1] = React.useState(null);
   const [text2, ChangeText2] = React.useState(null);
   const loginUser = (word1, word2) => {
-      fetch('http://192.168.0.154:3000/api/user/login', { //change your ip addressn here
+      fetch('http://192.168.4.192:3000/api/user/login', { //change your ip addressn here
             method: 'POST', // Here you're saying that you want to make a POST request. Could be any method, like a GET, for example.
             headers: {
                 'Content-Type' : 'application/json'
