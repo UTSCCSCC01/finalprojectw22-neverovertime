@@ -22,21 +22,26 @@ function LogIn ({ navigation }) {
 
   const [text1, ChangeText1] = React.useState(null);
   const [text2, ChangeText2] = React.useState(null);
-
   const loginUser = (word1, word2) => {
-    if (word1 == 'cory'){
-      if (word2 == '1234'){
-        navigation.navigate('Home')
-      } else {
-        Alert.alert(
-          '', "Wrong password"
-          );
-      }
-    } else {
-      Alert.alert(
-        '', "username does not exist"
-        );
-    }
+      fetch('http://192.168.0.154:3000/api/user/login', { //change your ip addressn here
+            method: 'POST', // Here you're saying that you want to make a POST request. Could be any method, like a GET, for example.
+            headers: {
+                'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify({
+              "username": word1,
+              "password": word2
+            })
+          })
+          .then(response => response.json())
+          .then((serverResponse) => {
+//            console.warn(serverResponse)
+              if(serverResponse == true){
+                navigation.navigate('Home')
+              }else{
+                Alert.alert('', "Wrong password");
+              }
+          })
   };
 
   return (
