@@ -6,15 +6,17 @@ import {
   ScrollView,
   StatusBar,
   Section,
-  Text,
-  TextInput,
+//  Text,
+//  TextInput,
   useColorScheme,
-  Button,
+//  Button,
   Title,
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {apiAddress} from './ApiConfig'
+import {Button, Input, Icon, Text} from 'react-native-elements';
+//import Icon from 'react-native-vector-icons/FontAwesome'
 //import checkPass from "./CheckPassword";
 
 /* Defines the Log In page view. */
@@ -50,22 +52,24 @@ function LogIn ({ navigation }) {
           console.log('dismissed');
           }}>
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>Log In</Text>
-            <TextInput
-              style={box.input}
+            <Text h2>Log In</Text>
+            <Input
               onChangeText={ChangeText1}
               value={text1}
               placeholder="Username"
             />
-            <TextInput
-              style={box.input}
-              onChangeText={ChangeText2}
-              value={text2}
-              placeholder="Password"
-            />
-            
+
+            <Input
+                          onChangeText={ChangeText2}
+                          value={text2}
+                          placeholder="Password"
+                          secureTextEntry={true}
+
+                        />
+
             <Button title="Log In" onPress={() => loginUser(text1, text2)} />
-            <Button title="SignUp" onPress={() => navigation.navigate('SignUp')} />
+
+            <Button title="SignUp" type="outline" onPress={() => navigation.navigate('SignUp')}  />
       </View>
       </TouchableWithoutFeedback>
     );
