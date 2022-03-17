@@ -61,16 +61,15 @@ function LogIn ({ navigation }) {
             />
 
             <Input
-                          onChangeText={ChangeText2}
-                          value={text2}
-                          placeholder="Password"
-                          secureTextEntry={true}
+              onChangeText={ChangeText2}
+              value={text2}
+              placeholder="Password"
+              secureTextEntry={true}
+            />
+            
+            <Button title="Log In" onPress={() => navigation.navigate('Home')} />
+            <Button title="SignUp" type="outline" onPress={() => navigation.navigate('SignUp')} />
 
-                        />
-
-            <Button title="Log In" onPress={() => loginUser(text1, text2)} />
-
-            <Button title="SignUp" type="outline" onPress={() => navigation.navigate('SignUp')}  />
       </View>
       </TouchableWithoutFeedback>
     );
