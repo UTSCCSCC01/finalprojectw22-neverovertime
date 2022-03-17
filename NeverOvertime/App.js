@@ -78,7 +78,7 @@ const App = () => {
             <Stack.Screen name="Home" component={Home} options={{ title: 'NeverOvertime' }}/>
             <Stack.Screen name="AccountView" component={AccountView} options={{ title: 'Profile' }}/>
             <Stack.Screen name="SignUp" component={SignUp} options={{ title: 'NeverOvertime' }}/>
-
+            <Stack.Screen name="Achievement" component={Achievement} options={{title: 'Achievement'}} />
             <Stack.Screen name="GamePage" component={GamePage} options={ {title: 'GamePage'}} />
             <Stack.Screen name="Search" component={Search} options={ {title: 'Search'}} />
             <Stack.Screen name="Bet" component={Bet} options={ {title: 'Bet'}} />
