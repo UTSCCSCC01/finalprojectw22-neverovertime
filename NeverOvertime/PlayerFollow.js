@@ -1,4 +1,6 @@
-const fs = require('fs');
+import test1 from './followData/User.json'
+
+//const fs = require('fs');
 
 //Adds following followName to name's data
 function addFollowing(name,followName){
@@ -113,8 +115,8 @@ function removeFollower(name,followerName){
 //Returns an array containing the users name is following
 function checkFollowing(name){
     try{
-        var foll = require('./followData/' + name + '.json');
-        return foll.following;
+        //var foll = require('./followData/' + name + '.json');
+        return test1.following;
     }
     catch(e){}
 }
@@ -122,8 +124,8 @@ function checkFollowing(name){
 //Returns an array containing the users following name
 function checkFollowers(name){
     try{
-        var foll = require('./followData/' + name + '.json');
-        return foll.followers;
+        //var foll = require('./followData/' + name + '.json');
+        return test1.followers;
     }
     catch(e){}
 }
