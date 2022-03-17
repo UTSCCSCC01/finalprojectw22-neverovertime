@@ -33,7 +33,7 @@ var followinglist = checkFollowing("User")
 var followingtext = ""
 /* function that traverse through the followers list  */
 function displayFollowing(){
-  for(let a=0; a<followinglist.length-1; i++){
+  for(let a=0; a<followinglist.length-1; a++){
     followingtext +=followinglist[a] + ", ";
   }
   text += followinglist[followinglist.length-1];
