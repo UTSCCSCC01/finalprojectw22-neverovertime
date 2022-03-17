@@ -82,7 +82,45 @@ app.post('/api/user/signup', function (req, res) {
 });
 
 
+app.post('/api/user/search', function (req, res) {
+    console.log('req.body');
+    console.log(req.body);
+    // Connecting to the database.
+    connection.getConnection(function (err, connection) {
+    if (err) throw err;
 
+    var sqlQuery = 'SELECT Id from users WHERE username=? LIMIT 1';
+    connection.query(sqlQuery,[req.body.username], function (error, results, fields) {
+      // If some error occurs, we throw an error.
+      if (error) throw error;
+      if(results.length == 0){
+        res.send('-1');
+      }else{
+        res.send(results[0]['Id'].toString());
+      }
+    });
+  });
+});
+
+app.get('/api/user', function (req, res) {
+    console.log('req.query');
+    console.log(req.query);
+    // Connecting to the database.
+    connection.getConnection(function (err, connection) {
+    if (err) throw err;
+
+    var sqlQuery = 'SELECT Username, Email, Balance from users WHERE Id=? LIMIT 1';
+    connection.query(sqlQuery,[req.query.id], function (error, results, fields) {
+      // If some error occurs, we throw an error.
+      if (error) throw error;
+      if(results.length == 0){
+        res.send('{}');
+      }else{
+        res.send(results[0]);
+      }
+    });
+  });
+});
 
 // Starting our server.
 app.listen(3000, () => {
