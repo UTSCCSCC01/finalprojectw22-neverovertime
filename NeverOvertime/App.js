@@ -38,6 +38,8 @@ import Achievement from "./components/Achievement.js";
 import SignUp from "./signup.js";
 import GamePage from "./GamePage.js";
 import Bet from './Bet.js';
+import Search from './Search.js';
+import Profile from './Profile.js';
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -78,7 +80,9 @@ const App = () => {
             <Stack.Screen name="SignUp" component={SignUp} options={{ title: 'NeverOvertime' }}/>
 
             <Stack.Screen name="GamePage" component={GamePage} options={ {title: 'GamePage'}} />
+            <Stack.Screen name="Search" component={Search} options={ {title: 'Search'}} />
             <Stack.Screen name="Bet" component={Bet} options={ {title: 'Bet'}} />
+            <Stack.Screen name="Profile" component={Profile} options={ {title: 'Profile'}} />
         </Stack.Navigator>
     </NavigationContainer>
   );
