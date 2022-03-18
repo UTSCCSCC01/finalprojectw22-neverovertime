@@ -25,7 +25,6 @@ function LogIn ({ navigation }) {
   const [text1, ChangeText1] = React.useState(null);
   const [text2, ChangeText2] = React.useState(null);
   const loginUser = (word1, word2) => {
-
       fetch('http://' + apiAddress + ':3000/api/user/login', { //change your ip addressn here
             method: 'POST', // Here you're saying that you want to make a POST request. Could be any method, like a GET, for example.
             headers: {
@@ -61,15 +60,16 @@ function LogIn ({ navigation }) {
             />
 
             <Input
-              onChangeText={ChangeText2}
-              value={text2}
-              placeholder="Password"
-              secureTextEntry={true}
-            />
-            
-            <Button title="Log In" onPress={() => navigation.navigate('Home')} />
-            <Button title="SignUp" type="outline" onPress={() => navigation.navigate('SignUp')} />
+                          onChangeText={ChangeText2}
+                          value={text2}
+                          placeholder="Password"
+                          secureTextEntry={true}
 
+                        />
+
+            <Button title="Log In" onPress={() => loginUser(text1, text2)} />
+
+            <Button title="SignUp" type="outline" onPress={() => navigation.navigate('SignUp')}  />
       </View>
       </TouchableWithoutFeedback>
     );

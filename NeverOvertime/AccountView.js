@@ -1,17 +1,15 @@
 import React from 'react';
 import type {Node} from 'react';
+import { StyleSheet, View, FlatList, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import {
   SafeAreaView,
   ScrollView,
   StatusBar,
-  StyleSheet,
   Section,
   Text,
   TextInput,
   useColorScheme,
-  View,
   Button,
-  Alert,
   Title,
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -77,7 +75,11 @@ function AccountView ({ navigation }) {
 
   const [text1, ChangeText1] = React.useState(null);
 
-  return (
+   return (
+    <TouchableWithoutFeedback onPress={() => {
+            Keyboard.dismiss();
+            console.log('dismissed');
+            }}>
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <Text>View Profile</Text>
           <Text>Username : cory</Text>
@@ -95,7 +97,8 @@ function AccountView ({ navigation }) {
           <Button title="Delete Account" onPress={() => navigation.popToTop('LogIn')}/>
           <Button title="Search" onPress={() => navigation.navigate('Search')} />
     </View>
-  );
+    </TouchableWithoutFeedback>
+   );
 }
 
 export default AccountView
