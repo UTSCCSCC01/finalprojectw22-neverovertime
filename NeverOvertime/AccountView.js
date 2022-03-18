@@ -29,7 +29,9 @@ function displayFollower(){
   return text
 }
 
-/* View to see account details. */
+/* View to see account details.
+Users should be able to view details of their account
+*/
 function AccountView ({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>

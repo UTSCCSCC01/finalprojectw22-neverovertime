@@ -17,7 +17,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {apiAddress} from './ApiConfig'
 //import checkPass from "./CheckPassword";
 
-/* Defines the Log In page view. */
+/* Defines the Search view.
+Users can search for the profiles of other users accounts in this page.
+*/
 function Search ({ navigation }) {
 
   const [text1, ChangeText1] = React.useState(null);

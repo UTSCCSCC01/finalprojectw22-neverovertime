@@ -68,8 +68,9 @@ const Section = ({children, title}): Node => {
   );
 };
 
-/* Defines the app and structure. */
 const Stack = createNativeStackNavigator();
+
+/* Defines the app and structure. */
 const App = () => {
 
   return (
