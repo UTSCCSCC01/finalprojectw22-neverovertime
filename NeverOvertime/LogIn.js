@@ -19,7 +19,9 @@ import {Button, Input, Icon, Text} from 'react-native-elements';
 //import Icon from 'react-native-vector-icons/FontAwesome'
 //import checkPass from "./CheckPassword";
 
-/* Defines the Log In page view. */
+/* Defines the Log In page view.
+Users should be able to log into their accounts or go to the sign in page to register a new account
+*/
 function LogIn ({ navigation }) {
 
   const [text1, ChangeText1] = React.useState(null);

@@ -16,7 +16,9 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-/* View to see other user's account details. */
+/* View to see other user's account details.
+Users can see the profile details of other user accounts
+*/
 function AccountView ({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>

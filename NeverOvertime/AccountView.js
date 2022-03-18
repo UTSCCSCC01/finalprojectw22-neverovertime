@@ -35,6 +35,7 @@ function displayFollower(){
 }
 */
 
+
 var followinglist = checkFollowing("User")
 var followingtext = ""
 
@@ -70,7 +71,10 @@ function displayFollowing(){
   return followingtext
 }
 */
-/* View to see account details. */
+
+/* View to see account details.
+Users should be able to view details of their account
+*/
 function AccountView ({ navigation }) {
 
   const [text1, ChangeText1] = React.useState(null);
