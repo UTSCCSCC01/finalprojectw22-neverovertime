@@ -24,6 +24,7 @@ function Home ({ navigation, route }) {
           <Text>Home Screen</Text>
           <Button title="View Profile" onPress={() => navigation.push('AccountView')} />
           <Button title="Achievement" onPress={() => navigation.navigate('Achievement')} />
+          <Button title="Add to Balance" onPress={() => navigation.navigate('AddMoney')} />
           <Button title="Logout" onPress={() => navigation.popToTop()} />
           <Button title="GamePage" onPress={() => navigation.navigate('GamePage')} />
           <Text>Balance: 1000</Text>
