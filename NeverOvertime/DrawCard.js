@@ -16,7 +16,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {Card, Deck} from "./CardDeck.js";
 
+/* Function to draw a random card.
 
+Returns the Card object drawn from the Deck object.
+*/
 function drawCard({ navigation, route }){
     var bag = [];
     dealerCard = new newDeck();

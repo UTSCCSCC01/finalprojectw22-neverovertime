@@ -40,7 +40,9 @@ deck.shuffle()
 //   Chips()
 // }
 
-/* Defines the view for playing Black Jack. */
+/* Defines the view for playing Black Jack.
+Players can play Black Jack and make bets in a game.
+*/
 function GamePage ({ navigation, route }) {
 
     const initialValue = getTotal(playerCard)
