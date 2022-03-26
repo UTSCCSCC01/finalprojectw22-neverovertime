@@ -39,3 +39,5 @@ function achMaxVal(achName){
     console.log("Invalid Achievement Name");
     return -1;
 }
+
+module.exports = {achMaxVal, achComplete}
