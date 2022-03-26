@@ -1,3 +1,9 @@
+//Returns whether or not an achievement achName with value achVal has been completed
+function achComplete(achName, achVal){
+    var valMax = achMaxVal(achName);
+    return (valMax <= achVal);
+}
+
 //Returns the value needed for an achievement achName to be considered "completed"
 function achMaxVal(achName){
     switch(achName) {
