@@ -69,7 +69,8 @@ function LogIn ({ navigation }) {
 
                         />
 
-            <Button title="Log In" onPress={() => loginUser(text1, text2)} />
+            {/* <Button title="Log In" onPress={() => loginUser(text1, text2)} /> */}
+            <Button title="Log In" onPress={() => navigation.navigate('Home')} />
 
             <Button title="SignUp" type="outline" onPress={() => navigation.navigate('SignUp')}  />
       </View>
