@@ -46,12 +46,9 @@ app.post('/api/user/login', function (req, res) {
     var sqlQuery = 'SELECT * from users WHERE username=? and password=? LIMIT 1';
     connection.query(sqlQuery,[req.body.username, req.body.password], function (error, results, fields) {
       // If some error occurs, we throw an error.
+      console.log(results);
       if (error) throw error;
-      if(results.length != 0){
-        res.send(true);
-      }else{
-        res.send(false);
-      }
+      res.send(results);
     });
   });
 });

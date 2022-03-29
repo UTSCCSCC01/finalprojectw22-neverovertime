@@ -2,39 +2,34 @@ import React, { useState, useEffect } from 'react';
 import { TouchableOpacity, View, StyleSheet, Image, Button , Text} from "react-native"
 import {addBal, subBal, checkBal} from "./EditBalance.js"
 import {apiAddress} from './ApiConfig'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 /* Defines betting features and the view to bet currency and view bet in-game. */
-export default function Bet() {
-    const [balance, setBalance] = useState(1000);
+export default function Bet({ navigation, route }) {
+    const [balance, setBalance] = useState(0);
+    const [cost, setCost] = useState(0);
+    async function getUserData(){
+       var balance = await AsyncStorage.getItem("user_balance");
+       setBalance(balance);
+    }
+    async function setUserBalance(newBalance){
+       await AsyncStorage.setItem('user_balance', newBalance.toString());
+    }
+     useEffect(() => {
+        getUserData();
 
-    // useEffect(() => {
-    //     fetch('http://'+apiAddress+':3000/api/user?id=' + route.params.userid, {
-    //         method: 'GET', // Here you're saying that you want to make a POST request. Could be any method, like a GET, for example.
-    //         headers: {
-    //             'Content-Type' : 'application/json'
-    //         }
-    //     })
-    //     .then(response => response.json())
-    //     .then((serverResponse) => {
-    //         console.warn(serverResponse)
-    //         if(serverResponse == {}){
-    //             Alert.alert('', "User does not exist");
-    //             navigation.navigate('Home');
-    //         }else{
-    //             setBalance(serverResponse["Balance"])
-    //         }
-    //     })
-    // });
+     });
 
     
-    const [cost, setCost] = useState(0);
+
     const addCost=(price)=>{
         setCost(cost + price);
     }
 
 
     const payPrice=(price)=>{
-        setBalance(balance - price);
+        setUserBalance(balance - price);
+        // Todo: Update balance in database
     }
 
     const clearCost = () => {
