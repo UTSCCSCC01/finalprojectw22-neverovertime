@@ -29,6 +29,7 @@ function Home ({ navigation, route }) {
           <Button title="Add to Balance" onPress={() => navigation.navigate('AddMoney')} />
           <Button title="Logout" onPress={() => navigation.popToTop()} />
           <Button title="GamePage" onPress={() => navigation.navigate('GamePage')} />
+          <Button title="Shop" onPress={() => navigation.navigate('Shop')} />
           <Text>Balance: 0</Text>
     </View>
   );
