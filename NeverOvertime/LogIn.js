@@ -18,14 +18,16 @@ import {apiAddress} from './ApiConfig'
 import {Button, Input, Icon, Text} from 'react-native-elements';
 //import Icon from 'react-native-vector-icons/FontAwesome'
 //import checkPass from "./CheckPassword";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-/* Defines the Log In page view.
-Users should be able to log into their accounts or go to the sign in page to register a new account
-*/
+/* Defines the Log In page view. */
 function LogIn ({ navigation }) {
 
   const [text1, ChangeText1] = React.useState(null);
   const [text2, ChangeText2] = React.useState(null);
+
+
+
   const loginUser = (word1, word2) => {
       fetch('http://' + apiAddress + ':3000/api/user/login', { //change your ip addressn here
             method: 'POST', // Here you're saying that you want to make a POST request. Could be any method, like a GET, for example.
@@ -40,8 +42,20 @@ function LogIn ({ navigation }) {
           .then(response => response.json())
           .then((serverResponse) => {
 //            console.warn(serverResponse)
-              if(serverResponse == true){
-                navigation.navigate('Home')
+              if(serverResponse.length != 0){
+
+
+
+                async function setUserData(){
+                    await AsyncStorage.setItem('user_username', serverResponse[0]['username']);
+                    await AsyncStorage.setItem('user_id', serverResponse[0]['id'].toString());
+                    await AsyncStorage.setItem('user_email', serverResponse[0]['email']);
+                    await AsyncStorage.setItem('user_username', serverResponse[0]['username']);
+                    await AsyncStorage.setItem('user_balance', serverResponse[0]['balance'].toString());
+                }
+
+                setUserData();
+                navigation.navigate('Home');
               }else{
                 Alert.alert('', "Wrong password");
               }

@@ -41,6 +41,7 @@ import Bet from './Bet.js';
 import Search from './Search.js';
 import Profile from './Profile.js';
 import AddMoney from './AddMoney.js';
+import Shop from './Shop.js';
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -86,6 +87,7 @@ const App = () => {
             <Stack.Screen name="Bet" component={Bet} options={ {title: 'Bet'}} />
             <Stack.Screen name="Profile" component={Profile} options={ {title: 'Profile'}} />
             <Stack.Screen name="AddMoney" component={AddMoney} options={ {title: 'AddMoney'}} />
+            <Stack.Screen name="Shop" component={Shop} options={ {title: 'Shop'}} />
 
         </Stack.Navigator>
     </NavigationContainer>

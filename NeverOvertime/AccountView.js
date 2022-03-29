@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect, useState}  from 'react';
 import type {Node} from 'react';
 import { StyleSheet, View, FlatList, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import {
@@ -14,7 +14,8 @@ import {
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { checkFollowers, checkFollowing } from './PlayerFollow'
+import { checkFollowers, checkFollowing } from './PlayerFollow';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 var flist = checkFollowers("User")
 var text = ""
@@ -77,8 +78,23 @@ Users should be able to view details of their account
 */
 function AccountView ({ navigation }) {
 
-  const [text1, ChangeText1] = React.useState(null);
+  const [text1, ChangeText1] = useState(null);
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [balance, setBalance] = useState("");
+    useEffect(() => {
+        async function getUserData(){
+                        var username = await AsyncStorage.getItem("user_username");
+                        var email = await AsyncStorage.getItem("user_email");
+                        var balance = await AsyncStorage.getItem("user_balance");
+                        setUsername(username);
+                        setEmail(email);
+                        setBalance(balance);
 
+                    }
+        getUserData();
+
+    });
    return (
     <TouchableWithoutFeedback onPress={() => {
             Keyboard.dismiss();
@@ -86,9 +102,9 @@ function AccountView ({ navigation }) {
             }}>
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <Text>View Profile</Text>
-          <Text>Username : cory</Text>
+          <Text>Username : {username}</Text>
           <Text>Account Status : Active</Text>
-          <Text>Balance: 1000</Text>
+          <Text>Balance: {balance}</Text>
           <Text>Followers: {text}</Text>
           <Text>Following: {followingtext}</Text>
           <TextInput
