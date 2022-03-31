@@ -116,6 +116,7 @@ function AccountView ({ navigation }) {
           <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
           <Button title="Delete Account" onPress={() => navigation.popToTop('LogIn')}/>
           <Button title="Search" onPress={() => navigation.navigate('Search')} />
+          <Button title="PurchasedItems" onPress={() => navigation.navigate('PurchasedItem')} />
     </View>
     </TouchableWithoutFeedback>
    );
