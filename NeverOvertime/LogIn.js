@@ -84,7 +84,6 @@ function LogIn ({ navigation }) {
                         />
 
             <Button title="Log In" onPress={() => loginUser(text1, text2)} />
-
             <Button title="SignUp" type="outline" onPress={() => navigation.navigate('SignUp')}  />
       </View>
       </TouchableWithoutFeedback>
