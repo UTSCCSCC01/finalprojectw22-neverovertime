@@ -16,6 +16,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 //import { checkBal } from './EditBalance.js';
 
+
 /* Defines the Home page view.
 Home page is the main page a user should see, contains buttons to important pages.
 */
@@ -30,6 +31,8 @@ function Home ({ navigation, route }) {
           <Button title="Logout" onPress={() => navigation.popToTop()} />
           <Button title="GamePage" onPress={() => navigation.navigate('GamePage')} />
           <Button title="Shop" onPress={() => navigation.navigate('Shop')} />
+          <Button title="GameStats" onPress={() => navigation.navigate('GameStats')} />
+          <Text>Balance: 0</Text>
 
     </View>
   );
