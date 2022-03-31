@@ -6,7 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { shopItem } from "./shopItems.js"
 
 var invList = [0, 0, 0, 0, 0, 0, 0];
-
+var purchasedList = [0, 0, 0, 0, 0, 0, 0]; // use for now, later purchased item should be in database
 /* Defines betting features and the view to bet currency and view bet in-game. */
 export default function Bet({ navigation, route }) {
     const [balance, setBalance] = useState(0);
@@ -47,12 +47,24 @@ export default function Bet({ navigation, route }) {
 
     const clearCart = () => {
         clearCost();
+        clearInventory();
         setCart([]);
+
     }
 
     const purchase = () =>{
         payPrice(cost);
         clearCost();
+        itemPurchased();
+        clearInventory();
+    }
+
+    function itemPurchased(){
+        invList.forEach((val, index) => purchasedList[index] = invList[index])
+    }
+
+    function clearInventory(){
+        invList.forEach((val, index) => invList[index] = 0);
     }
 
     return (
@@ -223,4 +235,4 @@ const styles = StyleSheet.create(
 )
 
 
-export {invList};
+export {invList, purchasedList};

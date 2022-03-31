@@ -44,6 +44,7 @@ import AddMoney from './AddMoney.js';
 import Shop from './Shop.js';
 import Inventory from './Inventory.js';
 import GameStats from './GameStats.js';
+import PurchasedItem from './PurchasedItem.js';
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -92,6 +93,7 @@ const App = () => {
             <Stack.Screen name="Shop" component={Shop} options={ {title: 'Shop'}} />
             <Stack.Screen name="Inventory" component={Inventory} options={ {title: 'Inventory'}} />
             <Stack.Screen name="GameStats" component={GameStats} options={ {title: 'GameStats'}} />
+            <Stack.Screen name="PurchasedItem" component={PurchasedItem} options={ {title: 'PurchasedItem'}} />
         </Stack.Navigator>
     </NavigationContainer>
   );
