@@ -52,6 +52,12 @@ function LogIn ({ navigation }) {
                     await AsyncStorage.setItem('user_email', serverResponse[0]['email']);
                     await AsyncStorage.setItem('user_username', serverResponse[0]['username']);
                     await AsyncStorage.setItem('user_balance', serverResponse[0]['balance'].toString());
+
+                    await AsyncStorage.setItem('user_wins', serverResponse[0]['wins'].toString());
+                    await AsyncStorage.setItem('user_loses', serverResponse[0]['loses'].toString());
+                    await AsyncStorage.setItem('user_blackjacks', serverResponse[0]['blackjacks'].toString());
+                    await AsyncStorage.setItem('user_bankrupts', serverResponse[0]['bankrupts'].toString());
+
                 }
 
                 setUserData();
