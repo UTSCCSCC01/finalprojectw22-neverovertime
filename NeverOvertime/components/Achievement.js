@@ -49,9 +49,9 @@ function Achievement({}) {
               extraData={refresh}
               renderItem={({ item }) => (
                 <TouchableOpacity onPress={() => completeAchievement(item.key)} disabled = {item.disabled}>
-                  <View style={styles.item} >
-                    <Text >{item.prize}</Text>
-                    <Text >{item.text}</Text>
+                  <View style={item.disabled? styles.itemClicked : styles.item} >
+                    <Text style={item.disabled ? styles.itemTextClicked : ''}>{item.prize}</Text>
+                    <Text style={item.disabled ? styles.itemTextClicked : ''}>{item.text}</Text>
                   </View>
                 </TouchableOpacity>
               )}
@@ -86,6 +86,18 @@ function Achievement({}) {
       borderRadius: 20,
       marginBottom: 10
       
+    },
+    itemClicked : {
+          padding: 20,
+          borderColor: '#bbb',
+          borderWidth: 4,
+          borderStyle: 'solid',
+          borderRadius: 20,
+          marginBottom: 10,
+          backgroundColor: 'coral',
+    },
+    itemTextClicked : {
+        color: '#fff'
     },
     listcontainer : {
       flex: 1,

@@ -46,9 +46,31 @@ app.post('/api/user/login', function (req, res) {
     var sqlQuery = 'SELECT * from users WHERE username=? and password=? LIMIT 1';
     connection.query(sqlQuery,[req.body.username, req.body.password], function (error, results, fields) {
       // If some error occurs, we throw an error.
-      console.log(results);
       if (error) throw error;
-      res.send(results);
+      if(results.length != 0){
+        res.send(true);
+      }else{
+        res.send(false);
+      }
+    });
+  });
+});
+app.post('/api/user/updatebalance', function (req, res) {
+//    console.log('req.body');
+//    console.log(req.body);
+    // Connecting to the database.
+    connection.getConnection(function (err, connection) {
+    if (err) throw err;
+
+    var sqlQuery = 'UPDATE users SET balance=? WHERE id=?';
+    connection.query(sqlQuery,[req.body.newbalance,req.body.userid], function (error, results, fields) {
+      // If some error occurs, we throw an error.
+      if (error) throw error;
+      if(results.length != 0){
+        res.send(true);
+      }else{
+        res.send(false);
+      }
     });
   });
 });
