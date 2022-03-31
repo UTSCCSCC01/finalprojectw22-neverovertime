@@ -4,6 +4,8 @@ import {addBal, subBal, checkBal} from "./EditBalance.js"
 import {apiAddress} from './ApiConfig'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+var invList = [0, 0, 0, 0, 0, 0, 0];
+
 /* Defines betting features and the view to bet currency and view bet in-game. */
 export default function Bet({ navigation, route }) {
     const [balance, setBalance] = useState(0);
@@ -50,7 +52,7 @@ export default function Bet({ navigation, route }) {
 
             <View style={styles.ItemsContainer}>
                 <View style={styles.ItemContainer}>
-                    <TouchableOpacity onPress={() =>addCost(100)}>
+                    <TouchableOpacity onPress={() =>{addCost(100); invList[0] = 1;}}>
                         <Image source={require("./images/icons/icon1.png")} style = {styles.ImageClass}/>
                     </TouchableOpacity>
                     <Text style={styles.ItemTextContainer}>
@@ -60,7 +62,7 @@ export default function Bet({ navigation, route }) {
                 </View>
 
                 <View style={styles.ItemContainer}>
-                    <TouchableOpacity onPress={() =>addCost(125)}>
+                    <TouchableOpacity onPress={() =>{addCost(125); invList[1] = 1;}}>
                         <Image source={require("./images/icons/icon2.png")} style = {styles.ImageClass}/>
                     </TouchableOpacity>
                     <Text style={styles.ItemTextContainer}>
@@ -70,7 +72,7 @@ export default function Bet({ navigation, route }) {
                 </View>
 
                 <View style={styles.ItemContainer}>
-                    <TouchableOpacity onPress={() =>addCost(125)}>
+                    <TouchableOpacity onPress={() =>{addCost(125); invList[2] = 1;}}>
                         <Image source={require("./images/icons/icon3.png")} style = {styles.ImageClass}/>
                     </TouchableOpacity>
                     <Text style={styles.ItemTextContainer}>
@@ -80,7 +82,7 @@ export default function Bet({ navigation, route }) {
                 </View>
 
                 <View style={styles.ItemContainer}>
-                    <TouchableOpacity onPress={() =>addCost(100)}>
+                    <TouchableOpacity onPress={() =>{addCost(100); invList[3] = 1;}}>
                         <Image source={require("./images/icons/icon4.png")} style = {styles.ImageClass}/>
                     </TouchableOpacity>
                     <Text style={styles.ItemTextContainer}>
@@ -90,7 +92,7 @@ export default function Bet({ navigation, route }) {
                 </View>
 
                 <View style={styles.ItemContainer}>
-                    <TouchableOpacity onPress={() =>addCost(150)}>
+                    <TouchableOpacity onPress={() =>{addCost(150); invList[4] = 1;}}>
                         <Image source={require("./images/icons/icon5.png")} style = {styles.ImageClass}/>
                     </TouchableOpacity>
                     <Text style={styles.ItemTextContainer}>
@@ -100,7 +102,7 @@ export default function Bet({ navigation, route }) {
                 </View>
 
                 <View style={styles.ItemContainer}>
-                    <TouchableOpacity onPress={() =>addCost(80)}>
+                    <TouchableOpacity onPress={() =>{addCost(80); invList[5] = 1;}}>
                         <Image source={require("./images/icons/icon6.png")} style = {styles.ImageClass}/>
                     </TouchableOpacity>
                     <Text style={styles.ItemTextContainer}>
@@ -110,7 +112,7 @@ export default function Bet({ navigation, route }) {
                 </View>
 
                 <View style={styles.ItemContainer}>
-                    <TouchableOpacity onPress={() =>addCost(60)}>
+                    <TouchableOpacity onPress={() =>{addCost(60); invList[6] = 1;}}>
                         <Image source={require("./images/icons/icon7.png")} style = {styles.ImageClass}/>
                     </TouchableOpacity>
                     <Text style={styles.ItemTextContainer}>
@@ -134,6 +136,13 @@ export default function Bet({ navigation, route }) {
                         onPress = {purchase}
                         title = "Purchase"
                         color = "red"
+                    />
+                </View>
+                <View style={styles.Button}>
+                    <Button
+                        onPress = {() => navigation.navigate('Inventory')}
+                        title = "Inventory"
+                        color = "hotpink"
                     />
                 </View>
             </View>
@@ -204,3 +213,6 @@ const styles = StyleSheet.create(
     }
 }
 )
+
+
+export {invList};
