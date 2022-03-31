@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import type {Node} from 'react';
 import {
   SafeAreaView,
@@ -19,13 +19,28 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {Card, Deck} from "./CardDeck.js";
 import {Chips} from "./Bet.js";
 import {addBal, subBal, checkBal} from "./EditBalance.js";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {apiAddress} from './ApiConfig'
 
 /* Defines the view for to add money to account balance. */
 function AddMoney ({ navigation, route }) {
 
       const [amount, setAmount] = useState(0);
       const [bankBal, setBankBal] = useState(0);
+      const [userid, setUserid] = useState(0);
+    async function getUserData(){
+      var balance = await AsyncStorage.getItem("user_balance");
+      setBankBal(balance);
+      var userid = await AsyncStorage.getItem("user_id");
+      setUserid(userid);
+    }
+    async function setUserBalance(newBalance){
+           await AsyncStorage.setItem('user_balance', newBalance.toString());
+    }
+    useEffect(() => {
+        getUserData();
 
+     });
       const addAmount=(value)=>{
           setAmount(amount + value);
       }
@@ -36,7 +51,24 @@ function AddMoney ({ navigation, route }) {
 
       const addBalance = () => {
         //addBal(name, amount);
-        setBankBal(bankBal + amount);
+//        setBankBal(bankBal + amount);
+         //Update Balance
+                  fetch('http://' + apiAddress + ':3000/api/user/updatebalance', { //change your ip addressn here
+                              method: 'POST', // Here you're saying that you want to make a POST request. Could be any method, like a GET, for example.
+                              headers: {
+                                  'Content-Type' : 'application/json'
+                              },
+                              body: JSON.stringify({
+                                "userid": userid,
+                                "newbalance": parseInt(bankBal) + amount
+                              })
+                            })
+                            .then(response => response.json())
+                            .then((serverResponse) => {
+                                alert('added to balance');
+                                setUserBalance(parseInt(bankBal) + amount);
+                                 setBankBal(parseInt(bankBal) + amount);
+                            })
         clearAmount();
       }
 

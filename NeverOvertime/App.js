@@ -34,7 +34,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from "./Home.js";
 import LogIn from "./LogIn.js";
 import AccountView from "./AccountView.js";
-import Achievement from "./components/Achievement.js";
+import Achievement from "./Achievement.js";
 import SignUp from "./signup.js";
 import GamePage from "./GamePage.js";
 import Bet from './Bet.js';

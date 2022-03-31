@@ -11,7 +11,8 @@ const connection = mysql.createPool({
   password : 'uTum7JvPVEwslIsA',
   database : 'neverovertime',
   port: 25060,
-  insecureAuth:true
+  insecureAuth:true,
+  connectionLimit:200
 });
 
 // Starting our app.
@@ -30,7 +31,7 @@ app.get('/users', function (req, res) {
     connection.query(sqlQuery, function (error, results, fields) {
       // If some error occurs, we throw an error.
       if (error) throw error;
-
+        connection.release();
       // Getting the 'response' from the database and sending it to our route. This is were the data is.
       res.send(results)
     });
@@ -47,6 +48,7 @@ app.post('/api/user/login', function (req, res) {
     connection.query(sqlQuery,[req.body.username, req.body.password], function (error, results, fields) {
       // If some error occurs, we throw an error.
       if (error) throw error;
+      connection.release();
       res.send(results);
     });
   });
@@ -62,11 +64,31 @@ app.post('/api/user/updatebalance', function (req, res) {
     connection.query(sqlQuery,[req.body.newbalance,req.body.userid], function (error, results, fields) {
       // If some error occurs, we throw an error.
       if (error) throw error;
-      if(results.length != 0){
+      console.log(results);
+      connection.release();
+      if(results['affectedRows'] != 0){
         res.send(true);
       }else{
         res.send(false);
       }
+    });
+  });
+});
+app.post('/api/user/addAchievement', function (req, res) {
+//    console.log('req.body');
+//    console.log(req.body);
+    // Connecting to the database.
+    connection.getConnection(function (err, connection) {
+    if (err) throw err;
+
+    var sqlQuery = 'INSERT INTO userAchievement (userid, achievementId) Values(?, ?)';
+    connection.query(sqlQuery,[req.body.userid,req.body.achievementId], function (error, results, fields) {
+      // If some error occurs, we throw an error.
+      if (error) throw error;
+      console.log(results);
+      if (error) throw error;
+      connection.release();
+       res.send(true);
     });
   });
 });
@@ -87,6 +109,7 @@ app.post('/api/user/signup', function (req, res) {
               connection.query(sqlQuery,[req.body.username, req.body.password, req.body.email], function (error, results, fields) {
                 // If some error occurs, we throw an error.
                 if (error) throw error;
+                connection.release();
                   res.send(true);
               });
 
@@ -108,6 +131,7 @@ app.post('/api/user/search', function (req, res) {
     connection.query(sqlQuery,[req.body.username], function (error, results, fields) {
       // If some error occurs, we throw an error.
       if (error) throw error;
+      connection.release();
       if(results.length == 0){
         res.send('-1');
       }else{
@@ -128,11 +152,28 @@ app.get('/api/user', function (req, res) {
     connection.query(sqlQuery,[req.query.id], function (error, results, fields) {
       // If some error occurs, we throw an error.
       if (error) throw error;
+      connection.release();
       if(results.length == 0){
         res.send('{}');
       }else{
         res.send(results[0]);
       }
+    });
+  });
+});
+app.get('/api/user/getAchievements', function (req, res) {
+    console.log('req.query');
+    console.log(req.query);
+    // Connecting to the database.
+    connection.getConnection(function (err, connection) {
+    if (err) throw err;
+
+    var sqlQuery = 'SELECT achievementId from userAchievement WHERE userid=? ';
+    connection.query(sqlQuery,[req.query.userid], function (error, results, fields) {
+      // If some error occurs, we throw an error.
+      if (error) throw error;
+      connection.release();
+      res.send(results);
     });
   });
 });
