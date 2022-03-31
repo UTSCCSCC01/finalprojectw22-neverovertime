@@ -1,7 +1,7 @@
 //Returns whether or not an achievement achName with value achVal has been completed
 function achComplete(achName, achVal){
     var valMax = achMaxVal(achName);
-    return (valMax <= achVal);
+    return (valMax <= achVal && valMax != -1);
 }
 
 //Returns the value needed for an achievement achName to be considered "completed"
@@ -36,8 +36,25 @@ function achMaxVal(achName){
         case "Get blackjack 10 times":
             return 10;
     }
-    console.log("Invalid Achievement Name");
+    console.log("Invalid Achievement Name \"" + achName + "\"");
     return -1;
 }
 
-module.exports = {achMaxVal, achComplete}
+//Returns a list of complete achievements given a json achVals
+function achCompleteList(achVals){
+    try{
+        var achList = [];
+        for (var key in achVals){
+            if (achComplete(key,achVals[key])){
+                achList.push(key);
+            }
+        }
+        return achList;
+    }
+    catch(e){
+        console.log("Invalid format for achVals");
+        return [];
+    }
+}
+
+module.exports = {achMaxVal, achComplete, achCompleteList}
