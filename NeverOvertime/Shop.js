@@ -3,11 +3,13 @@ import { TouchableOpacity, View, StyleSheet, Image, Button , Text} from "react-n
 import {addBal, subBal, checkBal} from "./EditBalance.js"
 import {apiAddress} from './ApiConfig'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { shopItem } from "./shopItems.js"
 
 /* Defines betting features and the view to bet currency and view bet in-game. */
 export default function Bet({ navigation, route }) {
     const [balance, setBalance] = useState(0);
     const [cost, setCost] = useState(0);
+    const [cart, setCart] = useState([]);
     async function getUserData(){
        var balance = await AsyncStorage.getItem("user_balance");
        setBalance(balance);
@@ -20,7 +22,12 @@ export default function Bet({ navigation, route }) {
 
      });
 
-    
+    const addToCart=(price, address)=>{
+        if (!cart.includes(address)){
+            setCart(cart + [address]);
+            addCost(price);
+        }
+    }
 
     const addCost=(price)=>{
         setCost(cost + price);
@@ -38,6 +45,7 @@ export default function Bet({ navigation, route }) {
 
     const clearCart = () => {
         clearCost();
+        setCart([]);
     }
 
     const purchase = () =>{
@@ -50,7 +58,7 @@ export default function Bet({ navigation, route }) {
 
             <View style={styles.ItemsContainer}>
                 <View style={styles.ItemContainer}>
-                    <TouchableOpacity onPress={() =>addCost(100)}>
+                    <TouchableOpacity onPress={() =>addToCart(100, "./images/icons/icon1.png")}>
                         <Image source={require("./images/icons/icon1.png")} style = {styles.ImageClass}/>
                     </TouchableOpacity>
                     <Text style={styles.ItemTextContainer}>
@@ -60,7 +68,7 @@ export default function Bet({ navigation, route }) {
                 </View>
 
                 <View style={styles.ItemContainer}>
-                    <TouchableOpacity onPress={() =>addCost(125)}>
+                    <TouchableOpacity onPress={() =>addToCart(125, "./images/icons/icon2.png")}>
                         <Image source={require("./images/icons/icon2.png")} style = {styles.ImageClass}/>
                     </TouchableOpacity>
                     <Text style={styles.ItemTextContainer}>
@@ -70,7 +78,7 @@ export default function Bet({ navigation, route }) {
                 </View>
 
                 <View style={styles.ItemContainer}>
-                    <TouchableOpacity onPress={() =>addCost(125)}>
+                    <TouchableOpacity onPress={() =>addToCart(125, "./images/icons/icon3.png")}>
                         <Image source={require("./images/icons/icon3.png")} style = {styles.ImageClass}/>
                     </TouchableOpacity>
                     <Text style={styles.ItemTextContainer}>
@@ -80,7 +88,7 @@ export default function Bet({ navigation, route }) {
                 </View>
 
                 <View style={styles.ItemContainer}>
-                    <TouchableOpacity onPress={() =>addCost(100)}>
+                    <TouchableOpacity onPress={() =>addToCart(100, "./images/icons/icon4.png")}>
                         <Image source={require("./images/icons/icon4.png")} style = {styles.ImageClass}/>
                     </TouchableOpacity>
                     <Text style={styles.ItemTextContainer}>
@@ -90,7 +98,7 @@ export default function Bet({ navigation, route }) {
                 </View>
 
                 <View style={styles.ItemContainer}>
-                    <TouchableOpacity onPress={() =>addCost(150)}>
+                    <TouchableOpacity onPress={() =>addToCart(150, "./images/icons/icon5.png")}>
                         <Image source={require("./images/icons/icon5.png")} style = {styles.ImageClass}/>
                     </TouchableOpacity>
                     <Text style={styles.ItemTextContainer}>
@@ -100,7 +108,7 @@ export default function Bet({ navigation, route }) {
                 </View>
 
                 <View style={styles.ItemContainer}>
-                    <TouchableOpacity onPress={() =>addCost(80)}>
+                    <TouchableOpacity onPress={() =>addToCart(80, "./images/icons/icon6.png")}>
                         <Image source={require("./images/icons/icon6.png")} style = {styles.ImageClass}/>
                     </TouchableOpacity>
                     <Text style={styles.ItemTextContainer}>
@@ -110,7 +118,7 @@ export default function Bet({ navigation, route }) {
                 </View>
 
                 <View style={styles.ItemContainer}>
-                    <TouchableOpacity onPress={() =>addCost(60)}>
+                    <TouchableOpacity onPress={() =>addToCart(60, "./images/icons/icon7.png")}>
                         <Image source={require("./images/icons/icon7.png")} style = {styles.ImageClass}/>
                     </TouchableOpacity>
                     <Text style={styles.ItemTextContainer}>
