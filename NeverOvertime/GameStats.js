@@ -28,6 +28,8 @@ function GameStats ({ navigation }){
     const [bankruptsCount, setBankruptsCount] = useState(0);
     const [bankruptsRate, setBankruptsRate] = useState(0);
     const [gameCount, setGameCount] = useState(0);
+    const [balance, setBalance] = useState(0);
+
 async function getUserData(){
             var username = await AsyncStorage.getItem("user_username");
             var winsCount = await AsyncStorage.getItem("user_wins");
@@ -39,7 +41,8 @@ async function getUserData(){
             var losesRate = Math.round(losesCount/gameCount*100);
             var blackjackRate = Math.round(blackjackCount/gameCount*100);
             var bankruptsRate = Math.round(bankruptsCount/gameCount*100);
-//            console.warn(username);
+            var balance = await AsyncStorage.getItem("user_balance");
+
             setUsername(username);
             setWinsCount(winsCount);
             setLosesCount(losesCount);
@@ -50,6 +53,7 @@ async function getUserData(){
             setLosesRate(losesRate);
             setBlackJackRate(blackjackRate);
             setBankruptsRate(bankruptsRate);
+            setBalance(balance);
 
 
         }
@@ -63,15 +67,22 @@ async function getUserData(){
                 Keyboard.dismiss();
                 console.log('dismissed');
                 }}>
-        <View style={{ flex: 1, justifyContent: 'center' }}>
-              <Text>Game Stats</Text>
-              <Text>Username : {username}</Text>
-              <Text>Wins : {winsCount} ({winsRate}%) </Text>
-              <Text>Loses : {losesCount} ({losesRate}%) </Text>
-              <Text>Blackjack : {blackjackCount} ({blackjackRate}%) </Text>
-              <Text>Bankrupts : {bankruptsCount} ({bankruptsRate}%) </Text>
-              <Text>Total Game Count : {gameCount}</Text>
-              <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
+        <View style={{ flex: 1,alignItems: 'center', justifyContent: 'flex-start' }}>
+            <Text>{"\n"}</Text>
+            <Text>{"\n"}</Text>
+            <Text style={{ fontSize: 40 , color : '#000000', fontWeight : 'bold'}}>Game Stats</Text>
+            <Text>{"\n"}</Text>
+            <Text style={{ fontSize: 15 , fontStyle:'italic', color: '#0000ff'}}> Username : {username}</Text>
+            <Text style={{ fontSize: 15 , fontStyle:'italic', color: '#0000ff' }}>Balance : {balance}</Text>
+            <Text>{"\n"}</Text>
+            <Text style={{ fontSize: 20 , fontStyle:'italic', color: '#000000' }}>Wins : {winsCount} ({winsRate}%) </Text>
+            <Text style={{ fontSize: 20 , fontStyle:'italic', color: '#000000' }}>Loses : {losesCount} ({losesRate}%) </Text>
+            <Text style={{ fontSize: 20 , fontStyle:'italic', color: '#000000' }}>Blackjack : {blackjackCount} ({blackjackRate}%) </Text>
+            <Text style={{ fontSize: 20 , fontStyle:'italic', color: '#000000' }}>Bankrupts : {bankruptsCount} ({bankruptsRate}%) </Text>
+            <Text>{"\n"}</Text>
+            <Text style={{ fontSize: 15 , fontStyle:'italic', color: '#0000ff'}}>Total Game Count : {gameCount}</Text>
+            <Text>{"\n"}</Text>
+            <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
         </View>
         </TouchableWithoutFeedback>
     )
