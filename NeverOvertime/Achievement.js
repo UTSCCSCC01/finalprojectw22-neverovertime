@@ -13,6 +13,7 @@ function Achievement({}) {
   const [blackjacks, setBlackjacks] = useState(0);
   const [loses, setLoses] = useState(0);
   const [bankrupts, setBankrupts] = useState(0);
+  /* All achievements. Each achievement has a type, text, prize, required, price, key */
   const [achievement, setAchievement] = useState([
     {type:1, text: 'Win 1 round of game', prize: 'Reward $10', required:1, price:10, key : 1, disabled: false}, /* no key property and any other; change in Flatlist*/
     {type:1,text: 'Win 10 round of game', prize: 'Reward $100',required:10,price:100, key : 2, disabled: false},
