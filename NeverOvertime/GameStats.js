@@ -19,37 +19,37 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function GameStats ({ navigation }){
     const [username, setUsername] = useState("");
-    const [winsCount, setWinsCount] = useState("");
-    const [winsRate, setWinsRate] = useState("");
-    const [losesCount, setLosesCount] = useState("");
-    const [losesRate, setLosesRate] = useState("");
-    const [blackjackCount, setBlackJackCount] = useState("");
-    const [blackjackRate, setBlackJackRate] = useState("");
-    const [bankruptsCount, setBankruptsCount] = useState("");
-    const [bankruptsRate, setBankruptsRate] = useState("");
-    const [gameCount, setGameCount] = useState("");
+    const [winsCount, setWinsCount] = useState(0);
+    const [winsRate, setWinsRate] = useState(0);
+    const [losesCount, setLosesCount] = useState(0);
+    const [losesRate, setLosesRate] = useState(0);
+    const [blackjackCount, setBlackJackCount] = useState(0);
+    const [blackjackRate, setBlackJackRate] = useState(0);
+    const [bankruptsCount, setBankruptsCount] = useState(0);
+    const [bankruptsRate, setBankruptsRate] = useState(0);
+    const [gameCount, setGameCount] = useState(0);
 async function getUserData(){
             var username = await AsyncStorage.getItem("user_username");
-//            var winsCount = await AsyncStorage.getItem("user_wins");
-//            var losesCount = await AsyncStorage.getItem("user_loses");
-//            var blackjackCount = await AsyncStorage.getItem("user_blackjack");
-//            var bankruptsCount = await AsyncStorage.getItem("user_bankrupts");
-//            var gameCount = winsCount+losesCount+blackjackCount+bankruptsCount;
-//            var winsRate = round(winsCount/gameCount*100,2);
-//            var losesRate = round(losesCount/gameCount*100,2);
-//            var blackjackRate = round(blackjackCount/gameCount*100,2);
-//            var bankruptsRate = round(bankruptsCount/gameCount*100,2);
-            console.warn(username);
+            var winsCount = await AsyncStorage.getItem("user_wins");
+            var losesCount = await AsyncStorage.getItem("user_loses");
+            var blackjackCount = await AsyncStorage.getItem("user_blackjacks");
+            var bankruptsCount = await AsyncStorage.getItem("user_bankrupts");
+            var gameCount = parseInt(winsCount)+parseInt(losesCount)+parseInt(blackjackCount)+parseInt(bankruptsCount);
+            var winsRate = Math.round(winsCount/gameCount*100);
+            var losesRate = Math.round(losesCount/gameCount*100);
+            var blackjackRate = Math.round(blackjackCount/gameCount*100);
+            var bankruptsRate = Math.round(bankruptsCount/gameCount*100);
+//            console.warn(username);
             setUsername(username);
-//            setWinsCount(winsCount);
-//            setLosesCount(losesCount);
-//            setBlackJackCount(blackjackCount);
-//            setBankruptsCount(bankruptsCount);
-//            setGameCount(gameCount);
-//            setWinsRate(winsRate);
-//            setLosesRate(losesRate);
-//            setBlackJackRate(blackjackRate);
-//            setBankruptsRate(bankruptsRate);
+            setWinsCount(winsCount);
+            setLosesCount(losesCount);
+            setBlackJackCount(blackjackCount);
+            setBankruptsCount(bankruptsCount);
+            setGameCount(gameCount);
+            setWinsRate(winsRate);
+            setLosesRate(losesRate);
+            setBlackJackRate(blackjackRate);
+            setBankruptsRate(bankruptsRate);
 
 
         }
