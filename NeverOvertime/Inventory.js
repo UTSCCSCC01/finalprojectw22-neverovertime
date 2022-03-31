@@ -3,58 +3,24 @@ import { TouchableOpacity, View, StyleSheet, Image, Button , Text} from "react-n
 import {addBal, subBal, checkBal} from "./EditBalance.js"
 import {apiAddress} from './ApiConfig'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-var invList = [0, 0, 0, 0, 0, 0, 0];
+import {invList} from Shop;
 
 /* Defines betting features and the view to bet currency and view bet in-game. */
 export default function Bet({ navigation, route }) {
-    const [balance, setBalance] = useState(0);
-    const [cost, setCost] = useState(0);
-    async function getUserData(){
-       var balance = await AsyncStorage.getItem("user_balance");
-       setBalance(balance);
-    }
-    async function setUserBalance(newBalance){
-       await AsyncStorage.setItem('user_balance', newBalance.toString());
-    }
+
      useEffect(() => {
         getUserData();
 
      });
-
-    
-
-    const addCost=(price)=>{
-        setCost(cost + price);
-    }
-
-
-    const payPrice=(price)=>{
-        setUserBalance(balance - price);
-        // Todo: Update balance in database
-    }
-
-    const clearCost = () => {
-        setCost(0);
-    }
-
-    const clearCart = () => {
-        clearCost();
-    }
-
-    const purchase = () =>{
-        payPrice(cost);
-        clearCost();
-    }
 
     return (
         <View style = {styles.Container}>
 
             <View style={styles.ItemsContainer}>
                 <View style={styles.ItemContainer}>
-                    <TouchableOpacity onPress={() =>{addCost(100); invList[0] = 1;}}>
-                        <Image source={require("./images/icons/icon1.png")} style = {styles.ImageClass}/>
-                    </TouchableOpacity>
+                    
+                    <Image source={require("./images/icons/icon1.png")} style = {styles.ImageClass}/>
+
                     <Text style={styles.ItemTextContainer}>
                         Cost:100
                         {/* replace betAmount with bank balance from user */}
@@ -62,9 +28,9 @@ export default function Bet({ navigation, route }) {
                 </View>
 
                 <View style={styles.ItemContainer}>
-                    <TouchableOpacity onPress={() =>{addCost(125); invList[1] = 1;}}>
-                        <Image source={require("./images/icons/icon2.png")} style = {styles.ImageClass}/>
-                    </TouchableOpacity>
+                    
+                    <Image source={require("./images/icons/icon2.png")} style = {styles.ImageClass}/>
+                    
                     <Text style={styles.ItemTextContainer}>
                         Cost:125
                         {/* replace betAmount with bank balance from user */}
@@ -72,9 +38,9 @@ export default function Bet({ navigation, route }) {
                 </View>
 
                 <View style={styles.ItemContainer}>
-                    <TouchableOpacity onPress={() =>{addCost(125); invList[2] = 1;}}>
-                        <Image source={require("./images/icons/icon3.png")} style = {styles.ImageClass}/>
-                    </TouchableOpacity>
+                    
+                    <Image source={require("./images/icons/icon3.png")} style = {styles.ImageClass}/>
+                    
                     <Text style={styles.ItemTextContainer}>
                         Cost:125
                         {/* replace betAmount with bank balance from user */}
@@ -82,9 +48,9 @@ export default function Bet({ navigation, route }) {
                 </View>
 
                 <View style={styles.ItemContainer}>
-                    <TouchableOpacity onPress={() =>{addCost(100); invList[3] = 1;}}>
-                        <Image source={require("./images/icons/icon4.png")} style = {styles.ImageClass}/>
-                    </TouchableOpacity>
+                    
+                    <Image source={require("./images/icons/icon4.png")} style = {styles.ImageClass}/>
+                    
                     <Text style={styles.ItemTextContainer}>
                         Cost:100
                         {/* replace betAmount with bank balance from user */}
@@ -92,9 +58,9 @@ export default function Bet({ navigation, route }) {
                 </View>
 
                 <View style={styles.ItemContainer}>
-                    <TouchableOpacity onPress={() =>{addCost(150); invList[4] = 1;}}>
-                        <Image source={require("./images/icons/icon5.png")} style = {styles.ImageClass}/>
-                    </TouchableOpacity>
+                    
+                    <Image source={require("./images/icons/icon5.png")} style = {styles.ImageClass}/>
+                    
                     <Text style={styles.ItemTextContainer}>
                         Cost:150
                         {/* replace betAmount with bank balance from user */}
@@ -102,9 +68,9 @@ export default function Bet({ navigation, route }) {
                 </View>
 
                 <View style={styles.ItemContainer}>
-                    <TouchableOpacity onPress={() =>{addCost(80); invList[5] = 1;}}>
-                        <Image source={require("./images/icons/icon6.png")} style = {styles.ImageClass}/>
-                    </TouchableOpacity>
+                    
+                    <Image source={require("./images/icons/icon6.png")} style = {styles.ImageClass}/>
+                    
                     <Text style={styles.ItemTextContainer}>
                         Cost:80
                         {/* replace betAmount with bank balance from user */}
@@ -112,9 +78,9 @@ export default function Bet({ navigation, route }) {
                 </View>
 
                 <View style={styles.ItemContainer}>
-                    <TouchableOpacity onPress={() =>{addCost(60); invList[6] = 1;}}>
-                        <Image source={require("./images/icons/icon7.png")} style = {styles.ImageClass}/>
-                    </TouchableOpacity>
+                    
+                    <Image source={require("./images/icons/icon7.png")} style = {styles.ImageClass}/>
+                    
                     <Text style={styles.ItemTextContainer}>
                         Cost:60
                         {/* replace betAmount with bank balance from user */}
@@ -122,35 +88,6 @@ export default function Bet({ navigation, route }) {
                 </View>
 
             </View>   
-
-            <View style={styles.ButtonContainer}>
-                <View style={styles.Button}>
-                    <Button 
-                        onPress = {clearCart}
-                        title = "Clear Cart"
-                        color = "green"
-                    />
-                </View>
-                <View style={styles.Button}>
-                    <Button
-                        onPress = {purchase}
-                        title = "Purchase"
-                        color = "red"
-                    />
-                </View>
-            </View>
-
-            <View style={styles.TextContainer}>
-                <Text style={styles.TextField}>
-                    Cost : {cost} 
-                    {/* replace betAmount with bank balance from user */}
-                </Text>
-
-
-                <Text style={styles.TextField}>
-                    Current Balance : {balance}
-                </Text>
-            </View>
 
         </View> 
     )
@@ -206,6 +143,3 @@ const styles = StyleSheet.create(
     }
 }
 )
-
-
-export {invList};
