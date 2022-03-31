@@ -33,6 +33,7 @@ function Home ({ navigation, route }) {
           <Button title="Shop" onPress={() => navigation.navigate('Shop')} />
           <Button title="GameStats" onPress={() => navigation.navigate('GameStats')} />
           <Text>Balance: 0</Text>
+
     </View>
   );
 }
