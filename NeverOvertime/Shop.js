@@ -138,6 +138,13 @@ export default function Bet({ navigation, route }) {
                         color = "red"
                     />
                 </View>
+                <View style={styles.Button}>
+                    <Button
+                        onPress = {() => navigation.navigate('Inventory')}
+                        title = "Inventory"
+                        color = "hotpink"
+                    />
+                </View>
             </View>
 
             <View style={styles.TextContainer}>

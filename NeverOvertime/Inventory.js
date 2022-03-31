@@ -3,15 +3,80 @@ import { TouchableOpacity, View, StyleSheet, Image, Button , Text} from "react-n
 import {addBal, subBal, checkBal} from "./EditBalance.js"
 import {apiAddress} from './ApiConfig'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {invList} from Shop;
+import {invList} from "./Shop.js";
 
 /* Defines betting features and the view to bet currency and view bet in-game. */
-export default function Bet({ navigation, route }) {
+function Inventory({ navigation, route }) {
 
-     useEffect(() => {
-        getUserData();
+    function displayItem1(){
 
-     });
+        if (invList[0] == 1){
+
+            return <Image source={require("./images/icons/icon1.png")} style = {styles.ImageClass}/>
+        }
+        return null
+  
+    }
+
+    function displayItem2(){
+
+        if (invList[1] == 1){
+
+            return <Image source={require("./images/icons/icon2.png")} style = {styles.ImageClass}/>
+        }
+        return null
+  
+    }
+
+    function displayItem3(){
+
+        if (invList[2] == 1){
+
+            return <Image source={require("./images/icons/icon3.png")} style = {styles.ImageClass}/>
+        }
+        return null
+  
+    }
+
+    function displayItem4(){
+
+        if (invList[3] == 1){
+
+            return <Image source={require("./images/icons/icon4.png")} style = {styles.ImageClass}/>
+        }
+        return null
+  
+    }
+
+    function displayItem5(){
+
+        if (invList[4] == 1){
+
+            return <Image source={require("./images/icons/icon5.png")} style = {styles.ImageClass}/>
+        }
+        return null
+  
+    }
+
+    function displayItem6(){
+
+        if (invList[5] == 1){
+
+            return <Image source={require("./images/icons/icon6.png")} style = {styles.ImageClass}/>
+        }
+        return null
+  
+    }
+
+    function displayItem7(){
+
+        if (invList[6] == 1){
+
+            return <Image source={require("./images/icons/icon7.png")} style = {styles.ImageClass}/>
+        }
+        return null
+  
+    }
 
     return (
         <View style = {styles.Container}>
@@ -19,72 +84,44 @@ export default function Bet({ navigation, route }) {
             <View style={styles.ItemsContainer}>
                 <View style={styles.ItemContainer}>
                     
-                    <Image source={require("./images/icons/icon1.png")} style = {styles.ImageClass}/>
+                    {displayItem1()}
 
-                    <Text style={styles.ItemTextContainer}>
-                        Cost:100
-                        {/* replace betAmount with bank balance from user */}
-                    </Text>
                 </View>
 
                 <View style={styles.ItemContainer}>
                     
-                    <Image source={require("./images/icons/icon2.png")} style = {styles.ImageClass}/>
+                    {displayItem2()}
                     
-                    <Text style={styles.ItemTextContainer}>
-                        Cost:125
-                        {/* replace betAmount with bank balance from user */}
-                    </Text>
                 </View>
 
                 <View style={styles.ItemContainer}>
                     
-                    <Image source={require("./images/icons/icon3.png")} style = {styles.ImageClass}/>
-                    
-                    <Text style={styles.ItemTextContainer}>
-                        Cost:125
-                        {/* replace betAmount with bank balance from user */}
-                    </Text>
+                    {displayItem3()}
+
                 </View>
 
                 <View style={styles.ItemContainer}>
                     
-                    <Image source={require("./images/icons/icon4.png")} style = {styles.ImageClass}/>
-                    
-                    <Text style={styles.ItemTextContainer}>
-                        Cost:100
-                        {/* replace betAmount with bank balance from user */}
-                    </Text>
+                    {displayItem4()}
+
                 </View>
 
                 <View style={styles.ItemContainer}>
                     
-                    <Image source={require("./images/icons/icon5.png")} style = {styles.ImageClass}/>
-                    
-                    <Text style={styles.ItemTextContainer}>
-                        Cost:150
-                        {/* replace betAmount with bank balance from user */}
-                    </Text>
+                    {displayItem5()}
+
                 </View>
 
                 <View style={styles.ItemContainer}>
                     
-                    <Image source={require("./images/icons/icon6.png")} style = {styles.ImageClass}/>
-                    
-                    <Text style={styles.ItemTextContainer}>
-                        Cost:80
-                        {/* replace betAmount with bank balance from user */}
-                    </Text>
+                    {displayItem6()}
+
                 </View>
 
                 <View style={styles.ItemContainer}>
                     
-                    <Image source={require("./images/icons/icon7.png")} style = {styles.ImageClass}/>
+                    {displayItem7()}
                     
-                    <Text style={styles.ItemTextContainer}>
-                        Cost:60
-                        {/* replace betAmount with bank balance from user */}
-                    </Text>
                 </View>
 
             </View>   
@@ -143,3 +180,5 @@ const styles = StyleSheet.create(
     }
 }
 )
+
+export default Inventory;
