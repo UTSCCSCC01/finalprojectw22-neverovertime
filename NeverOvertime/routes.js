@@ -47,11 +47,7 @@ app.post('/api/user/login', function (req, res) {
     connection.query(sqlQuery,[req.body.username, req.body.password], function (error, results, fields) {
       // If some error occurs, we throw an error.
       if (error) throw error;
-      if(results.length != 0){
-        res.send(true);
-      }else{
-        res.send(false);
-      }
+      res.send(results);
     });
   });
 });
