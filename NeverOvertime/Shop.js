@@ -40,11 +40,16 @@ export default function Bet({ navigation, route }) {
 
     const clearCart = () => {
         clearCost();
+        clearInventory();
     }
 
     const purchase = () =>{
         payPrice(cost);
         clearCost();
+    }
+
+    function clearInventory(){
+        invList.forEach((val, index) => invList[index] = 0);
     }
 
     return (
