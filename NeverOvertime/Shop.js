@@ -47,6 +47,7 @@ export default function Bet({ navigation, route }) {
         payPrice(cost);
         clearCost();
         itemPurchased();
+        clearInventory();
     }
 
     function itemPurchased(){

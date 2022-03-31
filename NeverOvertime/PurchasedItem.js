@@ -5,34 +5,6 @@ import {apiAddress} from './ApiConfig'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {purchasedList} from "./Shop.js";
 
-// const PurchasedItem = () =>{
-//     function displayPurchasedItems(){
-//         purchasedList.forEach((item, index) => {
-//             if(item == 1 && index == 0){
-//                 return <Image source={require("./images/icons/icon1.png")} style = {styles.ImageClass}/>
-//             }
-//             if(item == 1 && index == 1){
-//                 return <Image source={require("./images/icons/icon2.png")} style = {styles.ImageClass}/>
-//             }
-//             if(item == 1 && index == 2){
-//                 return <Image source={require("./images/icons/icon3.png")} style = {styles.ImageClass}/>
-//             }
-//             if(item == 1 && index == 3){
-//                 return <Image source={require("./images/icons/icon4.png")} style = {styles.ImageClass}/>
-//             }
-//             if(item == 1 && index == 4){
-//                 return <Image source={require("./images/icons/icon5.png")} style = {styles.ImageClass}/>
-//             }
-//             if(item == 1 && index == 5){
-//                 return <Image source={require("./images/icons/icon6.png")} style = {styles.ImageClass}/>
-//             }
-//             if(item == 1 && index == 6){
-//                 return <Image source={require("./images/icons/icon7.png")} style = {styles.ImageClass}/>
-//             }
-//         });
-        
-//     }
-// }
 const PurchasedItem = () =>{
     function displayItem1(){
         if ([0] == 1){
@@ -77,7 +49,9 @@ const PurchasedItem = () =>{
     }
 
     function displayItem7(){
-        if (purchasedList[6] == 1){return <Image source={require("./images/icons/icon7.png")} style = {styles.ImageClass}/>}
+        if (purchasedList[6] == 1){
+            return <Image source={require("./images/icons/icon7.png")} style = {styles.ImageClass}/>
+        }
         return null
     }
 
@@ -155,9 +129,5 @@ const styles = StyleSheet.create(
     }
 }
 )
-
-    
-    
-
 
 export default PurchasedItem;
