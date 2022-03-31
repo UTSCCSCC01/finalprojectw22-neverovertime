@@ -74,6 +74,82 @@ app.post('/api/user/updatebalance', function (req, res) {
     });
   });
 });
+app.post('/api/user/updateWins', function (req, res) {
+    // Connecting to the database.
+    connection.getConnection(function (err, connection) {
+    if (err) throw err;
+
+    var sqlQuery = 'UPDATE users SET wins=? WHERE id=?';
+    connection.query(sqlQuery,[req.body.newwins,req.body.userid], function (error, results, fields) {
+      // If some error occurs, we throw an error.
+      if (error) throw error;
+      console.log(results);
+      connection.release();
+      if(results['affectedRows'] != 0){
+        res.send(true);
+      }else{
+        res.send(false);
+      }
+    });
+  });
+});
+app.post('/api/user/updateLoses', function (req, res) {
+    // Connecting to the database.
+    connection.getConnection(function (err, connection) {
+    if (err) throw err;
+
+    var sqlQuery = 'UPDATE users SET loses=? WHERE id=?';
+    connection.query(sqlQuery,[req.body.newloses,req.body.userid], function (error, results, fields) {
+      // If some error occurs, we throw an error.
+      if (error) throw error;
+      console.log(results);
+      connection.release();
+      if(results['affectedRows'] != 0){
+        res.send(true);
+      }else{
+        res.send(false);
+      }
+    });
+  });
+});
+app.post('/api/user/updateBlackjacks', function (req, res) {
+    // Connecting to the database.
+    connection.getConnection(function (err, connection) {
+    if (err) throw err;
+
+    var sqlQuery = 'UPDATE users SET blackjacks=? WHERE id=?';
+    connection.query(sqlQuery,[req.body.newblackjacks,req.body.userid], function (error, results, fields) {
+      // If some error occurs, we throw an error.
+      if (error) throw error;
+      console.log(results);
+      connection.release();
+      if(results['affectedRows'] != 0){
+        res.send(true);
+      }else{
+        res.send(false);
+      }
+    });
+  });
+});
+app.post('/api/user/updateBankrupts', function (req, res) {
+    // Connecting to the database.
+    connection.getConnection(function (err, connection) {
+    if (err) throw err;
+
+    var sqlQuery = 'UPDATE users SET bankrupts=? WHERE id=?';
+    connection.query(sqlQuery,[req.body.newbankrupts,req.body.userid], function (error, results, fields) {
+      // If some error occurs, we throw an error.
+      if (error) throw error;
+      console.log(results);
+      connection.release();
+      if(results['affectedRows'] != 0){
+        res.send(true);
+      }else{
+        res.send(false);
+      }
+    });
+  });
+});
 app.post('/api/user/addAchievement', function (req, res) {
 //    console.log('req.body');
 //    console.log(req.body);
@@ -177,6 +253,7 @@ app.get('/api/user/getAchievements', function (req, res) {
     });
   });
 });
+
 
 // Starting our server.
 app.listen(3000, () => {
