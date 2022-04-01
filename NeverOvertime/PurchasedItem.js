@@ -59,6 +59,7 @@ const PurchasedItem = () =>{
         <View style = {styles.Container}>
             <View style={styles.ItemsContainer}>
                 <View style={styles.ItemContainer}>
+                    <Text> Items Purchased:</Text>
                     {/* {Image_purchased.map((image, index) => {
                         return <Image source={required(image.url)} style = {styles.ImageClass} />
                     })} */} 
