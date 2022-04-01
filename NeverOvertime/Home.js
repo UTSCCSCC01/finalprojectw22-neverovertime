@@ -25,13 +25,14 @@ function Home ({ navigation, route }) {
 
     <View  style={{flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <Text>Home Screen</Text>
+          <Button title="GamePage" onPress={() => navigation.navigate('GamePage')} />
           <Button title="View Profile" onPress={() => navigation.push('AccountView')} />
           <Button title="Achievement" onPress={() => navigation.navigate('Achievement')} />
-          <Button title="Add to Balance" onPress={() => navigation.navigate('AddMoney')} />
-          <Button title="Logout" onPress={() => navigation.popToTop()} />
-          <Button title="GamePage" onPress={() => navigation.navigate('GamePage')} />
-          <Button title="Shop" onPress={() => navigation.navigate('Shop')} />
           <Button title="GameStats" onPress={() => navigation.navigate('GameStats')} />
+          <Button title="Add to Balance" onPress={() => navigation.navigate('AddMoney')} />
+          <Button title="Shop" onPress={() => navigation.navigate('Shop')} />
+          <Button title="Logout" onPress={() => navigation.popToTop()} />
+
           <Text>Balance: 0</Text>
 
     </View>
