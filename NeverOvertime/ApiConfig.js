@@ -1,3 +1,3 @@
 
-export const apiAddress = "192.168.1.68"
+export const apiAddress = "10.0.0.218"
 

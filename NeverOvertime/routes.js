@@ -260,5 +260,5 @@ app.listen(3000, () => {
  console.log('Go to http://localhost:3000/users so you can see the data.');
  var networkInterfaces = os.networkInterfaces();
  console.log('The one starts with 192.168...... is your local ip address');
- console.log(networkInterfaces);
+ console.log(networkInterfaces["en0"]);
 });
