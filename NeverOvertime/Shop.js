@@ -31,6 +31,10 @@ export default function Bet({ navigation, route }) {
         }
     }
 
+    const storeInServer=(price)=>{
+        return price;
+    }
+
     const addCost=(price)=>{
         setCost(cost + price);
     }
