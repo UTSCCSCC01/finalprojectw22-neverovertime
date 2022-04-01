@@ -11,10 +11,13 @@ var purchasedList = [0, 0, 0, 0, 0, 0, 0]; // use for now, later purchased item 
 export default function Bet({ navigation, route }) {
     const [balance, setBalance] = useState(0);
     const [cost, setCost] = useState(0);
+    const [userid, setUserid] = useState(0);
     const [cart, setCart] = useState([]);
     async function getUserData(){
        var balance = await AsyncStorage.getItem("user_balance");
        setBalance(balance);
+       var userid = await AsyncStorage.getItem("user_id");
+       setUserid(userid);
     }
     async function setUserBalance(newBalance){
        await AsyncStorage.setItem('user_balance', newBalance.toString());
@@ -42,7 +45,21 @@ export default function Bet({ navigation, route }) {
 
     const payPrice=(price)=>{
         setUserBalance(balance - price);
-        // Todo: Update balance in database
+
+        fetch('http://' + apiAddress + ':3000/api/user/updatebalance', { //change your ip addressn here
+        method: 'POST', // Here you're saying that you want to make a POST request. Could be any method, like a GET, for example.
+                                      headers: {
+                                          'Content-Type' : 'application/json'
+                                      },
+                                      body: JSON.stringify({
+                                        "userid": userid,
+                                        "newbalance": parseInt(balance) - price
+                                      })
+                                    })
+                                    .then(response => response.json())
+                                    .then((serverResponse) => {
+                                     setBalance(parseInt(balance) - price);
+                                    })
     }
 
     const clearCost = () => {
