@@ -3,16 +3,21 @@ import { TouchableOpacity, View, StyleSheet, Image, Button , Text} from "react-n
 import {addBal, subBal, checkBal} from "./EditBalance.js"
 import {apiAddress} from './ApiConfig'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { shopItem } from "./shopItems.js"
 
 var invList = [0, 0, 0, 0, 0, 0, 0];
-
+var purchasedList = [0, 0, 0, 0, 0, 0, 0]; // use for now, later purchased item should be in database
 /* Defines betting features and the view to bet currency and view bet in-game. */
 export default function Bet({ navigation, route }) {
     const [balance, setBalance] = useState(0);
     const [cost, setCost] = useState(0);
+    const [userid, setUserid] = useState(0);
+    const [cart, setCart] = useState([]);
     async function getUserData(){
        var balance = await AsyncStorage.getItem("user_balance");
        setBalance(balance);
+       var userid = await AsyncStorage.getItem("user_id");
+       setUserid(userid);
     }
     async function setUserBalance(newBalance){
        await AsyncStorage.setItem('user_balance', newBalance.toString());
@@ -22,7 +27,16 @@ export default function Bet({ navigation, route }) {
 
      });
 
-    
+    const addToCart=(price, address)=>{
+        if (!cart.includes(address)){
+            setCart(cart + [address]);
+            addCost(price);
+        }
+    }
+
+    const storeInServer=(price)=>{
+        return price;
+    }
 
     const addCost=(price)=>{
         setCost(cost + price);
@@ -31,7 +45,21 @@ export default function Bet({ navigation, route }) {
 
     const payPrice=(price)=>{
         setUserBalance(balance - price);
-        // Todo: Update balance in database
+
+        fetch('http://' + apiAddress + ':3000/api/user/updatebalance', { //change your ip addressn here
+        method: 'POST', // Here you're saying that you want to make a POST request. Could be any method, like a GET, for example.
+                                      headers: {
+                                          'Content-Type' : 'application/json'
+                                      },
+                                      body: JSON.stringify({
+                                        "userid": userid,
+                                        "newbalance": parseInt(balance) - price
+                                      })
+                                    })
+                                    .then(response => response.json())
+                                    .then((serverResponse) => {
+                                     setBalance(parseInt(balance) - price);
+                                    })
     }
 
     const clearCost = () => {
@@ -40,11 +68,24 @@ export default function Bet({ navigation, route }) {
 
     const clearCart = () => {
         clearCost();
+        clearInventory();
+        setCart([]);
+
     }
 
     const purchase = () =>{
         payPrice(cost);
         clearCost();
+        itemPurchased();
+        clearInventory();
+    }
+
+    function itemPurchased(){
+        invList.forEach((val, index) => purchasedList[index] = invList[index])
+    }
+
+    function clearInventory(){
+        invList.forEach((val, index) => invList[index] = 0);
     }
 
     return (
@@ -52,7 +93,7 @@ export default function Bet({ navigation, route }) {
 
             <View style={styles.ItemsContainer}>
                 <View style={styles.ItemContainer}>
-                    <TouchableOpacity onPress={() =>{addCost(100); invList[0] = 1;}}>
+                    <TouchableOpacity onPress={() =>{addToCart(100, "./images/icons/icon1.png"); invList[0] = 1;}}>
                         <Image source={require("./images/icons/icon1.png")} style = {styles.ImageClass}/>
                     </TouchableOpacity>
                     <Text style={styles.ItemTextContainer}>
@@ -62,7 +103,7 @@ export default function Bet({ navigation, route }) {
                 </View>
 
                 <View style={styles.ItemContainer}>
-                    <TouchableOpacity onPress={() =>{addCost(125); invList[1] = 1;}}>
+                    <TouchableOpacity onPress={() =>{addToCart(125, "./images/icons/icon2.png"); invList[1] = 1;}}>
                         <Image source={require("./images/icons/icon2.png")} style = {styles.ImageClass}/>
                     </TouchableOpacity>
                     <Text style={styles.ItemTextContainer}>
@@ -72,7 +113,7 @@ export default function Bet({ navigation, route }) {
                 </View>
 
                 <View style={styles.ItemContainer}>
-                    <TouchableOpacity onPress={() =>{addCost(125); invList[2] = 1;}}>
+                    <TouchableOpacity onPress={() =>{addToCart(125, "./images/icons/icon3.png"); invList[2] = 1;}}>
                         <Image source={require("./images/icons/icon3.png")} style = {styles.ImageClass}/>
                     </TouchableOpacity>
                     <Text style={styles.ItemTextContainer}>
@@ -82,7 +123,7 @@ export default function Bet({ navigation, route }) {
                 </View>
 
                 <View style={styles.ItemContainer}>
-                    <TouchableOpacity onPress={() =>{addCost(100); invList[3] = 1;}}>
+                    <TouchableOpacity onPress={() =>{addToCart(100, "./images/icons/icon4.png"); invList[3] = 1;}}>
                         <Image source={require("./images/icons/icon4.png")} style = {styles.ImageClass}/>
                     </TouchableOpacity>
                     <Text style={styles.ItemTextContainer}>
@@ -92,7 +133,7 @@ export default function Bet({ navigation, route }) {
                 </View>
 
                 <View style={styles.ItemContainer}>
-                    <TouchableOpacity onPress={() =>{addCost(150); invList[4] = 1;}}>
+                    <TouchableOpacity onPress={() =>{addToCart(150, "./images/icons/icon5.png"); invList[4] = 1;}}>
                         <Image source={require("./images/icons/icon5.png")} style = {styles.ImageClass}/>
                     </TouchableOpacity>
                     <Text style={styles.ItemTextContainer}>
@@ -102,7 +143,7 @@ export default function Bet({ navigation, route }) {
                 </View>
 
                 <View style={styles.ItemContainer}>
-                    <TouchableOpacity onPress={() =>{addCost(80); invList[5] = 1;}}>
+                    <TouchableOpacity onPress={() =>{addToCart(80, "./images/icons/icon6.png"); invList[5] = 1;}}>
                         <Image source={require("./images/icons/icon6.png")} style = {styles.ImageClass}/>
                     </TouchableOpacity>
                     <Text style={styles.ItemTextContainer}>
@@ -112,7 +153,7 @@ export default function Bet({ navigation, route }) {
                 </View>
 
                 <View style={styles.ItemContainer}>
-                    <TouchableOpacity onPress={() =>{addCost(60); invList[6] = 1;}}>
+                    <TouchableOpacity onPress={() =>{addToCart(60, "./images/icons/icon7.png"); invList[6] = 1;}}>
                         <Image source={require("./images/icons/icon7.png")} style = {styles.ImageClass}/>
                     </TouchableOpacity>
                     <Text style={styles.ItemTextContainer}>
@@ -215,4 +256,4 @@ const styles = StyleSheet.create(
 )
 
 
-export {invList};
+export {invList, purchasedList};

@@ -32,9 +32,6 @@ function Home ({ navigation, route }) {
           <Button title="Add to Balance" onPress={() => navigation.navigate('AddMoney')} />
           <Button title="Shop" onPress={() => navigation.navigate('Shop')} />
           <Button title="Logout" onPress={() => navigation.popToTop()} />
-
-          <Text>Balance: 0</Text>
-
     </View>
   );
 }
