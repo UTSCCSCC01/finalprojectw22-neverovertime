@@ -11,6 +11,8 @@ import {
   View,
   Button,
   Alert,
+  Image,
+  TouchableOpacity,
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -57,9 +59,26 @@ function GamePage ({ navigation, route }) {
     const [dealerTotal, updateDealerTotal] = useState(dInitialValue);
 
 
+
+    function getDir(state){
+      return (""+state).toString();
+    }
+
+    function sleep(sleepDuration){
+      var now = new Date().getTime();
+      while(new Date().getTime() < now + sleepDuration){ /* Do nothing */ }
+    }
+    
+
+
     function addCards(rankSuit, value){
       updateCards(rankSuit)
       updateTotal(value)
+    }
+
+    function addDealerCards(rankSuit, value){
+      updateDealerInfo(rankSuit)
+      updateDealerTotal(value)
     }
 
 
@@ -116,26 +135,50 @@ function GamePage ({ navigation, route }) {
       updateCards(info)
       updateTotal(v)
 
+      const dealerv = getTotal(dealerCard)
+      const dealerInfo = getCardInfo(dealerCard)
+      updateDealerInfo(dealerInfo)
+      updateDealerTotal(dealerv)
+
       return null
     }
 
-    /* Defines the view of each card. */
-    // function displayNewCard(){
-
-    //   if (check < 17){
-
-    //     do {
-    //       var newCard = deck.dealCard()
-    //       check += cardValue(newCard)
-    //       return <Text><Text> | </Text><Text>{newCard.rank}</Text><Text> of </Text><Text>{newCard.suit}</Text></Text>
-    //     }
-    //     while (check < 17);
-    //   }
-    //   return null
-
-    // }
 
     /* Draws a card from the deck. */
+    function stay(){
+      if (getTotal(dealerCard) < 17){
+        do{
+          const card = deck.dealCard()
+          const rank = card.rank
+          const suit = card.suit
+          const value = cardValue(card)
+
+          dealerCard.push(card)
+          const info = getCardInfo(dealerCard)
+          const total = getTotal(dealerCard)
+
+          addDealerCards(info, total)
+        }
+        while(getTotal(dealerCard) < 17);
+      }
+
+      if (getTotal(dealerCard)>21){
+        Alert.alert("you won", "Dealer busted")
+      } else if (getTotal(dealerCard)>getTotal(playerCard)){
+        Alert.alert("you lost", "Dealer Hand is bigger than or equal to yours\n \
+        Your hand is: " + getTotal(playerCard) + "\n Dealer's hand is: " + 
+        getTotal(dealerCard))
+      } else{
+        Alert.alert("you won", "Your hand is: " + getTotal(playerCard) + "\n Dealer's hand is: " + 
+        getTotal(dealerCard))
+      }
+      newGame();
+
+
+      return null;
+    }
+
+
     function drawCard(){
 
       const card = deck.dealCard()
@@ -148,6 +191,13 @@ function GamePage ({ navigation, route }) {
       const total = getTotal(playerCard)
 
       addCards(info, total)
+
+      if (total>21){
+        Alert.alert('You lost', "You busted. Your hand is: "+ info+ "with total:"
+        + getTotal(playerCard));
+        newGame();
+      }
+
       return card
 
 
@@ -179,17 +229,37 @@ function GamePage ({ navigation, route }) {
       return info
     }
 
+
+    // function getTemplate(templateName) {
+    //   return require(`./images/cards/Aclub.png`);
+    // }
+
+
+
+
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-start' }}>
 
       <Text style={{ fontSize: 40 }}>Dealer</Text>
       <Text style={{ fontSize: 20 }}>Dealer's Hand</Text>
       <Text>{dealerInfo}</Text>
-      <Text></Text>
+
+      <View style={styles.ItemContainer}>
+        {/* <Text>{`./images/cards/${dealerbox1}`}</Text>
+        <Image source={getTemplate(dealerbox1)} style = {styles.ImageClass}/> */}
+        {/* <TouchableOpacity onPress={() =>{}}>
+          <Image source={require(dealerbox1)} style = {styles.ImageClass}/>
+        </TouchableOpacity> */}
+        {/* <Image source={require(dealerbox1)} style = {styles.ImageClass}/>
+        <Image source={require(dealerbox1)} style = {styles.ImageClass}/>
+        <Image source={require(dealerbox1)} style = {styles.ImageClass}/>
+        <Image source={require(dealerbox1)} style = {styles.ImageClass}/>
+        <Image source={require(dealerbox1)} style = {styles.ImageClass}/>
+        <Image source={require(dealerbox1)} style = {styles.ImageClass}/>
+        <Image source={require(dealerbox1)} style = {styles.ImageClass}/> */}
+      </View>
 
 
-
-      <Text></Text>
       <Text>
         <Text>Dealer's Total: </Text>
         <Text>{dealerTotal}</Text>
@@ -199,7 +269,8 @@ function GamePage ({ navigation, route }) {
       <Text></Text>
       <Text></Text>
       <Text></Text>
-      <Button title="Draw Cards for Player" onPress={() => drawCard()} />
+      <Button title="Hit" onPress={() => drawCard()} />
+      <Button title="Stay" onPress={() => stay()} />
       <Button title="New Game" onPress={() => newGame()} />
       <Text></Text>
       <Text></Text>
@@ -214,7 +285,30 @@ function GamePage ({ navigation, route }) {
       <Text>{playerTotal}</Text>
 
       </View>
+
+      
   );
 }
+
+const styles = StyleSheet.create(
+  {
+      ItemsContainer:{
+          flex: 7,
+          flexDirection: 'column',
+          justifyContent: 'space-evenly',
+          alignItems: 'center',      
+      },
+      ButtonContainer: {
+          flex: 2, 
+          flexDirection: 'row',
+          justifyContent: 'space-evenly',
+          alignItems: 'center',
+      },
+      ImageClass: {
+          width: 50,
+          height: 72
+      },
+  }
+  )
 
 export default GamePage;
