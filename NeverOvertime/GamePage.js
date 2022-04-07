@@ -28,14 +28,13 @@ deck.shuffle()
 
         var playerFirstCard = deck.dealCard()
         var playerSecondCard = deck.dealCard()
+const dealerCard = [];
+dealerCard.push(firstCard);
+dealerCard.push(secondCard); //push to a list
 
-    let dealerCard = [];
-    dealerCard.push(firstCard);
-    dealerCard.push(secondCard); //push to a list
-
-    let playerCard = [];
-    playerCard.push(playerFirstCard);
-    playerCard.push(playerSecondCard); //push to a list
+const playerCard = [];
+playerCard.push(playerFirstCard);
+playerCard.push(playerSecondCard); //push to a list
 
 
 // const chip=()=>{
@@ -165,11 +164,15 @@ function GamePage ({ navigation, route }) {
       if (getTotal(dealerCard)>21){
         Alert.alert("you won", "Dealer busted")
       } else if (getTotal(dealerCard)>getTotal(playerCard)){
-        Alert.alert("you lost", "Dealer Hand is bigger than or equal to yours\n \
-        Your hand is: " + getTotal(playerCard) + "\n Dealer's hand is: " + 
+        Alert.alert("you lost", "Dealer Hand is bigger than yours\n Your hand is: " +
+        getTotal(playerCard) + "\n Dealer's hand is: " +
         getTotal(dealerCard))
+      } else if (getTotal(dealerCard)<getTotal(playerCard)){
+              Alert.alert("you won", "Dealer Hand is smaller than yours\n Your hand is: " +
+              getTotal(playerCard) + "\n Dealer's hand is: " +
+              getTotal(dealerCard))
       } else{
-        Alert.alert("you won", "Your hand is: " + getTotal(playerCard) + "\n Dealer's hand is: " + 
+        Alert.alert("tie game", "Your hand is: " + getTotal(playerCard) + "\n Dealer's hand is: " +
         getTotal(dealerCard))
       }
       newGame();
@@ -193,8 +196,9 @@ function GamePage ({ navigation, route }) {
       addCards(info, total)
 
       if (total>21){
-        Alert.alert('You lost', "You busted. Your hand is: "+ info+ "with total:"
-        + getTotal(playerCard));
+        Alert.alert("you lost", "You busted: " +
+                getTotal(playerCard) + "\n Dealer's hand is: " +
+                getTotal(dealerCard))
         newGame();
       }
 
@@ -235,56 +239,48 @@ function GamePage ({ navigation, route }) {
     // }
 
 
-
-
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-start' }}>
 
       <Text style={{ fontSize: 40 }}>Dealer</Text>
       <Text style={{ fontSize: 20 }}>Dealer's Hand</Text>
-      <Text>{dealerInfo}</Text>
 
-      <View style={styles.ItemContainer}>
-        {/* <Text>{`./images/cards/${dealerbox1}`}</Text>
-        <Image source={getTemplate(dealerbox1)} style = {styles.ImageClass}/> */}
-        {/* <TouchableOpacity onPress={() =>{}}>
-          <Image source={require(dealerbox1)} style = {styles.ImageClass}/>
-        </TouchableOpacity> */}
-        {/* <Image source={require(dealerbox1)} style = {styles.ImageClass}/>
-        <Image source={require(dealerbox1)} style = {styles.ImageClass}/>
-        <Image source={require(dealerbox1)} style = {styles.ImageClass}/>
-        <Image source={require(dealerbox1)} style = {styles.ImageClass}/>
-        <Image source={require(dealerbox1)} style = {styles.ImageClass}/>
-        <Image source={require(dealerbox1)} style = {styles.ImageClass}/>
-        <Image source={require(dealerbox1)} style = {styles.ImageClass}/> */}
+      <View style={styles.ItemsContainer}>
+       {
+        dealerCard.map((c) =>(
+                    <Image source={c.image} style = {styles.ImageClass} />
+               ))
+       }
       </View>
-
 
       <Text>
         <Text>Dealer's Total: </Text>
         <Text>{dealerTotal}</Text>
       </Text>
-      <Text></Text>
-      <Text></Text>
-      <Text></Text>
-      <Text></Text>
+
       <Text></Text>
       <Button title="Hit" onPress={() => drawCard()} />
       <Button title="Stay" onPress={() => stay()} />
       <Button title="New Game" onPress={() => newGame()} />
       <Text></Text>
-      <Text></Text>
-      <Text></Text>
-      <Text></Text>
       <Button title="Bet" onPress={() => navigation.navigate('Bet')} />
-      <Text>Balance: 1000</Text>
+
 
       <Text style={{ fontSize: 20 }}>Player's Hand</Text>
-      <Text>{cardInfo}</Text>
-      <Text style={{ fontSize: 20 }}>Total</Text>
-      <Text>{playerTotal}</Text>
+    <View style={styles.ItemsContainer}>
+       {
+        playerCard.map((c) =>(
+                    <Image source={c.image} style = {styles.ImageClass} />
+               ))
+       }
+      </View>
+
+      <Text style={{ fontSize: 20 }}>Total: {playerTotal}</Text>
+       <Text>Balance: 1000</Text>
+
 
       </View>
+
 
       
   );
@@ -293,10 +289,10 @@ function GamePage ({ navigation, route }) {
 const styles = StyleSheet.create(
   {
       ItemsContainer:{
-          flex: 7,
-          flexDirection: 'column',
-          justifyContent: 'space-evenly',
-          alignItems: 'center',      
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          alignItems: 'center',
       },
       ButtonContainer: {
           flex: 2, 

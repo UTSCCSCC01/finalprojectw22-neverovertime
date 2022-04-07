@@ -1,6 +1,7 @@
+import CardImage from './CardImage.js'
+
 const SUITS = ["club", "heart", "spade", "diamond"]
 const RANKS = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
-
 /*
 Defines the Card class.
 
@@ -11,6 +12,8 @@ class Card{
     constructor(rank, suit){
         this.rank = rank
         this.suit = suit
+        this.image = CardImage[`${rank}${suit}`]
+
     }
 }
 
