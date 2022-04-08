@@ -37,7 +37,7 @@ function SignUp ({ navigation }) {
              .then((serverResponse) => {
 //               console.warn(serverResponse)
                  if(serverResponse == true){
-                   navigation.navigate('Home')
+                    navigation.popToTop()
                  }else{
                    Alert.alert('', "User exist");
                  }

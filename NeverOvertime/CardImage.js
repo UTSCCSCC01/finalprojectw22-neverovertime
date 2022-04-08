@@ -60,5 +60,5 @@ export default {
   'Qdiamond': require("./images/cards/Qdiamond.png"),
   'Qheart': require("./images/cards/Qheart.png"),
   'Qspade': require("./images/cards/Qspade.png"),
-
+  'back': require("./images/cards/back.png")
 };

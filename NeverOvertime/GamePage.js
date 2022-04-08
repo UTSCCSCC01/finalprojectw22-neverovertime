@@ -20,7 +20,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {Card, Deck} from "./CardDeck.js";
 import {Chips} from "./Bet.js";
 //import {dealerCard} from "./DrawCard.js";
-
+import CardImage from './CardImage.js'
 let deck = new Deck();
 
 deck.shuffle()
@@ -47,16 +47,18 @@ Players can play Black Jack and make bets in a game.
 */
 function GamePage ({ navigation, route }) {
 
-    const initialValue = getTotal(playerCard)
-    const initialInfo = getCardInfo(playerCard)
-    const [cardInfo, updateCards] = useState(initialInfo);
-    const [playerTotal, updateTotal] = useState(initialValue);
+        const initialValue = getTotal(playerCard)
+        const initialInfo = getCardInfo(playerCard)
+        const [cardInfo, updateCards] = useState(initialInfo);
+        const [playerTotal, updateTotal] = useState(initialValue);
+        const [isFinish, setIsFinish] = useState(false);
+        const [dochange, setDochange] = useState(false);
 
 
-    const dInitialValue = getTotal(dealerCard)
-    const dInitialInfo = getCardInfo(dealerCard)
-    const [dealerInfo, updateDealerInfo] = useState(dInitialInfo);
-    const [dealerTotal, updateDealerTotal] = useState(dInitialValue);
+        const dInitialValue = getTotal(dealerCard)
+        const dInitialInfo = getCardInfo(dealerCard)
+        const [dealerInfo, updateDealerInfo] = useState(dInitialInfo);
+        const [dealerTotal, updateDealerTotal] = useState(dInitialValue);
 
     const [betAmount, setBetAmount] = useState(0);
 
@@ -96,29 +98,21 @@ function GamePage ({ navigation, route }) {
 
 
     /* Defines how to evaluate the value of a card in Black Jack. */
-    function cardValue(card){
-      
+    function cardValue(card,total){
+
       if (card.rank == 'J' || card.rank == 'Q'|| card.rank == 'K'){
-        var value = 10
+        return 10
       } else if (card.rank == "A") {
-        var value = 11
+        if(total + 11 <= 21){
+            return 11
+        }else{
+            return 1
+        }
       } else {
-        var value = parseInt(card.rank);
+        return parseInt(card.rank);
       }
-      return value
     }
 
-    /* Evaluates the opponent cards. */
-    // function dealerStartCards(){
-      
-    //   var total = 0
-    //   total += cardValue(firstCard)
-    //   total += cardValue(secondCard)
-    //   //total += cardValue(card)
-
-    //   return total
-
-    // }
 
     function newGame(){
       deck = new Deck();
@@ -147,7 +141,7 @@ function GamePage ({ navigation, route }) {
       const dealerInfo = getCardInfo(dealerCard)
       updateDealerInfo(dealerInfo)
       updateDealerTotal(dealerv)
-
+        setIsFinish(false)
       return null
     }
 
@@ -157,15 +151,8 @@ function GamePage ({ navigation, route }) {
       if (getTotal(dealerCard) < 17){
         do{
           const card = deck.dealCard()
-          const rank = card.rank
-          const suit = card.suit
-          const value = cardValue(card)
 
           dealerCard.push(card)
-          const info = getCardInfo(dealerCard)
-          const total = getTotal(dealerCard)
-
-          addDealerCards(info, total)
         }
         while(getTotal(dealerCard) < 17);
       }
@@ -184,7 +171,7 @@ function GamePage ({ navigation, route }) {
         Alert.alert("tie game", "Your hand is: " + getTotal(playerCard) + "\n Dealer's hand is: " +
         getTotal(dealerCard))
       }
-      newGame();
+      setIsFinish(true)
 
 
       return null;
@@ -194,21 +181,21 @@ function GamePage ({ navigation, route }) {
     function drawCard(){
 
       const card = deck.dealCard()
-      const rank = card.rank
-      const suit = card.suit
-      const value = cardValue(card)
+//      const rank = card.rank
+//      const suit = card.suit
+//      const value = cardValue(card)
 
       playerCard.push(card);
-      const info = getCardInfo(playerCard)
-      const total = getTotal(playerCard)
-
-      addCards(info, total)
-
-      if (total>21){
+//      const info = getCardInfo(playerCard)
+//      const total = getTotal(playerCard)
+//
+//      addCards(info, total)
+        setDochange(!dochange)
+      if (getTotal(playerCard)>21){
         Alert.alert("you lost", "You busted: " +
                 getTotal(playerCard) + "\n Dealer's hand is: " +
                 getTotal(dealerCard))
-        newGame();
+        setIsFinish(true)
       }
 
       return card
@@ -225,9 +212,9 @@ function GamePage ({ navigation, route }) {
     }
 
     function getTotal(cards){
-      let total = 0
+      var total = 0
       for (let i = 0; i < cards.length; i++) {
-        total += cardValue(cards[i])
+        total += cardValue(cards[i],total)
       }
 
       return total
@@ -242,12 +229,6 @@ function GamePage ({ navigation, route }) {
       return info
     }
 
-
-    // function getTemplate(templateName) {
-    //   return require(`./images/cards/Aclub.png`);
-    // }
-
-
   return (
     <ImageBackground source={require('./images/background/bgn.jpg') } resizeMode="cover" style={{flex:1, 
       justifyContent: 'center'}}> 
@@ -257,26 +238,29 @@ function GamePage ({ navigation, route }) {
       <Text style={{ fontSize: 20, color: 'white' }}>Dealer's Hand</Text>
       <Text></Text>
       <Text style={{fontSize: 20, color: 'orange'}}>
-        <Text>Dealer's Total: </Text>
-        <Text>{dealerTotal}</Text>
+        { isFinish? <Text>Total: {getTotal(dealerCard)}</Text>:null}
       </Text>
       <View style={styles.ItemsContainer}>
-       {
-        dealerCard.map((c) =>(
-                    <Image source={c.image} style = {styles.ImageClass} />
-               ))
-       }
-      </View>
+
+
+             { isFinish? dealerCard.map((c) =>(
+                                             <Image source={c.image} style = {styles.ImageClass} />
+                                        )) :
+                                        <Image source={dealerCard[0].image} style = {styles.ImageClass} />
+                                        }
+                                        { isFinish?null:<Image source={CardImage["back"]} style = {styles.ImageClass} />}
+
+            </View>
       <Text></Text>
       <Text></Text>
       <Text></Text>
 
 
       <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly'}}>
-      <Button title="Hit" onPress={() => drawCard()} />
-      <Button title="Stay" onPress={() => stay()} />
-      <Button title="New Game" onPress={() => newGame()} />
-      {/* <Button title="Bet" onPress={() => navigation.navigate('Bet')} /> */}
+      { isFinish? null : <Button title="Hit" onPress={() => drawCard()} />}
+      { isFinish? null : <Button title="Stay" onPress={() => stay()} /> }
+      { isFinish? <Button title="New Game" onPress={() => newGame()} /> : null}
+
       </View>
 
       <Text></Text>
@@ -292,48 +276,8 @@ function GamePage ({ navigation, route }) {
        }
       </View>
 
-      <Text style={{ fontSize: 20, color: 'orange' }}>Total: {playerTotal}</Text>
+      <Text style={{ fontSize: 20, color: 'orange' }}>Total: {getTotal(playerCard)}</Text>
 
-      {/* <View style={{flexDirection: 'row'}}>
-        <Text style={{fontSize: 15, color: 'orange'}}>
-            Bank Balance : {betAmount} 
-        </Text>
-        <Text style={{fontSize: 15, color: 'orange'}}>
-            Total Bet : {betAmount}
-        </Text>
-      </View> */}
-
-       {/* <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
-        <View style={styles.Button}>
-          <Button 
-              onPress = {clearbet}
-              title = "Clear"
-          />
-        </View>
-        <View style={styles.Button}>
-          <Button
-              title = "Deal"
-          />
-        </View>
-
-       </View> */}
-      {/* <View style={styles.ImageContainer}>
-        <TouchableOpacity onPress={() =>addbet(1)}>
-            <Image source={require("./images/chip/1.png")} style = {styles.tokenClass}/>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() =>addbet(5)}>
-            <Image source={require("./images/chip/5.png")} style = {styles.tokenClass}/>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() =>addbet(25)}>
-            <Image source={require("./images/chip/25.png")} style = {styles.tokenClass}/>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() =>addbet(100)}>
-            <Image source={require("./images/chip/100.png")} style = {styles.tokenClass}/>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() =>addbet(500)}>
-            <Image source={require("./images/chip/500.png")} style = {styles.tokenClass}/>
-        </TouchableOpacity>
-      </View> */}
       </View>
     </ImageBackground>
       
