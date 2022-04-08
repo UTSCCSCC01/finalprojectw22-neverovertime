@@ -13,6 +13,7 @@ import {
   Alert,
   TouchableOpacity,
   Image,
+  ImageBackground
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -73,6 +74,9 @@ function AddMoney ({ navigation, route }) {
       }
 
   return (
+    <ImageBackground source={require('./images/background/bgn.jpg') } resizeMode="cover" style={{flex:1, 
+        justifyContent: 'center'}}> 
+        
           <View style = {styles.Container}>
 
 
@@ -118,6 +122,7 @@ function AddMoney ({ navigation, route }) {
 
 
           </View>
+    </ImageBackground>
       )
 }
 
@@ -162,7 +167,7 @@ const styles = StyleSheet.create(
     },
     TextField: {
         fontSize: 20,
-        color: 'black'
+        color: 'orange'
     }
 }
 )

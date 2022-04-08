@@ -11,6 +11,7 @@ import {
   useColorScheme,
   Button,
   Title,
+  ImageBackground
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -63,6 +64,9 @@ async function getUserData(){
     });
 
     return (
+    <ImageBackground source={require('./images/background/bgn.jpg') } resizeMode="cover" style={{flex:1, 
+        justifyContent: 'center'}}>
+
     <TouchableWithoutFeedback onPress={() => {
                 Keyboard.dismiss();
                 console.log('dismissed');
@@ -70,21 +74,22 @@ async function getUserData(){
         <View style={{ flex: 1,alignItems: 'center', justifyContent: 'flex-start' }}>
             <Text>{"\n"}</Text>
             <Text>{"\n"}</Text>
-            <Text style={{ fontSize: 40 , color : '#000000', fontWeight : 'bold'}}>Game Stats</Text>
+            <Text style={{ fontSize: 40 , color : 'white', fontWeight : 'bold'}}>Game Stats</Text>
             <Text>{"\n"}</Text>
-            <Text style={{ fontSize: 15 , fontStyle:'italic', color: '#0000ff'}}> Username : {username}</Text>
-            <Text style={{ fontSize: 15 , fontStyle:'italic', color: '#0000ff' }}>Balance : {balance}</Text>
+            <Text style={{ fontSize: 25 , fontStyle:'italic', color: 'white'}}> Username : {username}</Text>
+            <Text style={{ fontSize: 25 , fontStyle:'italic', color: 'white' }}>Balance : {balance}</Text>
             <Text>{"\n"}</Text>
-            <Text style={{ fontSize: 20 , fontStyle:'italic', color: '#000000' }}>Wins : {winsCount} ({winsRate}%) </Text>
-            <Text style={{ fontSize: 20 , fontStyle:'italic', color: '#000000' }}>Loses : {losesCount} ({losesRate}%) </Text>
-            <Text style={{ fontSize: 20 , fontStyle:'italic', color: '#000000' }}>Blackjack : {blackjackCount} ({blackjackRate}%) </Text>
-            <Text style={{ fontSize: 20 , fontStyle:'italic', color: '#000000' }}>Bankrupts : {bankruptsCount} ({bankruptsRate}%) </Text>
+            <Text style={{ fontSize: 20 , fontStyle:'italic', color: 'orange' }}>Wins : {winsCount} ({winsRate}%) </Text>
+            <Text style={{ fontSize: 20 , fontStyle:'italic', color: 'orange' }}>Loses : {losesCount} ({losesRate}%) </Text>
+            <Text style={{ fontSize: 20 , fontStyle:'italic', color: 'orange' }}>Blackjack : {blackjackCount} ({blackjackRate}%) </Text>
+            <Text style={{ fontSize: 20 , fontStyle:'italic', color: 'orange' }}>Bankrupts : {bankruptsCount} ({bankruptsRate}%) </Text>
             <Text>{"\n"}</Text>
-            <Text style={{ fontSize: 15 , fontStyle:'italic', color: '#0000ff'}}>Total Game Count : {gameCount}</Text>
+            <Text style={{ fontSize: 20 , fontStyle:'italic', color: 'white'}}>Total Game Count : {gameCount}</Text>
             <Text>{"\n"}</Text>
             <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
         </View>
         </TouchableWithoutFeedback>
+    </ImageBackground>
     )
 }
 

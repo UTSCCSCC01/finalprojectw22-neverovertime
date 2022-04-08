@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TouchableOpacity, View, StyleSheet, Image, Button , Text, ImageStore} from "react-native"
+import { TouchableOpacity, View, StyleSheet, Image, Button , Text, ImageStore, ImageBackground} from "react-native"
 import {addBal, subBal, checkBal} from "./EditBalance.js"
 import {apiAddress} from './ApiConfig'
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -56,10 +56,13 @@ const PurchasedItem = () =>{
     }
 
     return(
+        <ImageBackground source={require('./images/background/bgn.jpg') } resizeMode="cover" style={{flex:1, 
+            justifyContent: 'center'}}>
+        
         <View style = {styles.Container}>
             <View style={styles.ItemsContainer}>
                 <View style={styles.ItemContainer}>
-                    <Text> Items Purchased:</Text>
+                    <Text style={{color: 'orange', fontSize: 20}}> Items Purchased:</Text>
                     {/* {Image_purchased.map((image, index) => {
                         return <Image source={required(image.url)} style = {styles.ImageClass} />
                     })} */} 
@@ -76,6 +79,7 @@ const PurchasedItem = () =>{
             </View>   
 
     </View> 
+        </ImageBackground>
     );
 }
 
@@ -84,7 +88,7 @@ const styles = StyleSheet.create(
 {
     Container: {
         flex: 1,
-        backgroundColor : 'white', 
+        // backgroundColor : 'white', 
         
     },
     ItemContainer:{

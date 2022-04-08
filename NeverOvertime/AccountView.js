@@ -1,6 +1,6 @@
 import React,{useEffect, useState}  from 'react';
 import type {Node} from 'react';
-import { StyleSheet, View, FlatList, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { StyleSheet, View, FlatList, Alert, TouchableWithoutFeedback, Keyboard, ImageBackground } from 'react-native';
 import {
   SafeAreaView,
   ScrollView,
@@ -96,17 +96,20 @@ function AccountView ({ navigation }) {
 
     });
    return (
+    <ImageBackground source={require('./images/background/bgn.jpg') } resizeMode="cover" style={{flex:1, 
+      justifyContent: 'center'}}> 
+    
     <TouchableWithoutFeedback onPress={() => {
             Keyboard.dismiss();
             console.log('dismissed');
             }}>
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <Text>View Profile</Text>
-          <Text>Username : {username}</Text>
-          <Text>Account Status : Active</Text>
-          <Text>Balance: {balance}</Text>
-          <Text>Followers: {text}</Text>
-          <Text>Following: {followingtext}</Text>
+          <Text style={{ fontSize: 25 , fontStyle:'italic', color: 'white'}}>View Profile</Text>
+          <Text style={{ fontSize: 20 , fontStyle:'italic', color: 'white'}}>Username : {username}</Text>
+          <Text style={{ fontSize: 20 , fontStyle:'italic', color: 'white'}}>Account Status : Active</Text>
+          <Text style={{ fontSize: 20 , fontStyle:'italic', color: 'white'}}>Balance: {balance}</Text>
+          <Text style={{ fontSize: 15 , fontStyle:'italic', color: 'white'}}>Followers: {text}</Text>
+          <Text style={{ fontSize: 15 , fontStyle:'italic', color: 'white'}}>Following: {followingtext}</Text>
           <TextInput
               onChangeText={ChangeText1}
               value={text1}
@@ -119,6 +122,7 @@ function AccountView ({ navigation }) {
           <Button title="PurchasedItems" onPress={() => navigation.navigate('PurchasedItem')} />
     </View>
     </TouchableWithoutFeedback>
+    </ImageBackground>
    );
 }
 

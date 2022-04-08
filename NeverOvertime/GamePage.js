@@ -13,6 +13,7 @@ import {
   Alert,
   Image,
   TouchableOpacity,
+  ImageBackground
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -57,7 +58,15 @@ function GamePage ({ navigation, route }) {
     const [dealerInfo, updateDealerInfo] = useState(dInitialInfo);
     const [dealerTotal, updateDealerTotal] = useState(dInitialValue);
 
+    const [betAmount, setBetAmount] = useState(0);
 
+    const addbet=(amount)=>{
+        setBetAmount(betAmount + amount);
+    }
+
+    const clearbet = () => {
+        setBetAmount(0);
+    }
 
     function getDir(state){
       return (""+state).toString();
@@ -240,11 +249,17 @@ function GamePage ({ navigation, route }) {
 
 
   return (
+    <ImageBackground source={require('./images/background/bgn.jpg') } resizeMode="cover" style={{flex:1, 
+      justifyContent: 'center'}}> 
+    
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-start' }}>
 
-      <Text style={{ fontSize: 40 }}>Dealer</Text>
-      <Text style={{ fontSize: 20 }}>Dealer's Hand</Text>
-
+      <Text style={{ fontSize: 20, color: 'white' }}>Dealer's Hand</Text>
+      <Text></Text>
+      <Text style={{fontSize: 20, color: 'orange'}}>
+        <Text>Dealer's Total: </Text>
+        <Text>{dealerTotal}</Text>
+      </Text>
       <View style={styles.ItemsContainer}>
        {
         dealerCard.map((c) =>(
@@ -252,22 +267,24 @@ function GamePage ({ navigation, route }) {
                ))
        }
       </View>
-
-      <Text>
-        <Text>Dealer's Total: </Text>
-        <Text>{dealerTotal}</Text>
-      </Text>
-
       <Text></Text>
+      <Text></Text>
+      <Text></Text>
+
+
+      <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly'}}>
       <Button title="Hit" onPress={() => drawCard()} />
       <Button title="Stay" onPress={() => stay()} />
       <Button title="New Game" onPress={() => newGame()} />
+      {/* <Button title="Bet" onPress={() => navigation.navigate('Bet')} /> */}
+      </View>
+
       <Text></Text>
-      <Button title="Bet" onPress={() => navigation.navigate('Bet')} />
+      <Text></Text>
+      <Text></Text>
 
-
-      <Text style={{ fontSize: 20 }}>Player's Hand</Text>
-    <View style={styles.ItemsContainer}>
+      <Text style={{ fontSize: 20, color: 'white' }}>Player's Hand</Text>
+      <View style={styles.ItemsContainer}>
        {
         playerCard.map((c) =>(
                     <Image source={c.image} style = {styles.ImageClass} />
@@ -275,13 +292,50 @@ function GamePage ({ navigation, route }) {
        }
       </View>
 
-      <Text style={{ fontSize: 20 }}>Total: {playerTotal}</Text>
-       <Text>Balance: 1000</Text>
+      <Text style={{ fontSize: 20, color: 'orange' }}>Total: {playerTotal}</Text>
 
+      {/* <View style={{flexDirection: 'row'}}>
+        <Text style={{fontSize: 15, color: 'orange'}}>
+            Bank Balance : {betAmount} 
+        </Text>
+        <Text style={{fontSize: 15, color: 'orange'}}>
+            Total Bet : {betAmount}
+        </Text>
+      </View> */}
 
+       {/* <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+        <View style={styles.Button}>
+          <Button 
+              onPress = {clearbet}
+              title = "Clear"
+          />
+        </View>
+        <View style={styles.Button}>
+          <Button
+              title = "Deal"
+          />
+        </View>
+
+       </View> */}
+      {/* <View style={styles.ImageContainer}>
+        <TouchableOpacity onPress={() =>addbet(1)}>
+            <Image source={require("./images/chip/1.png")} style = {styles.tokenClass}/>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() =>addbet(5)}>
+            <Image source={require("./images/chip/5.png")} style = {styles.tokenClass}/>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() =>addbet(25)}>
+            <Image source={require("./images/chip/25.png")} style = {styles.tokenClass}/>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() =>addbet(100)}>
+            <Image source={require("./images/chip/100.png")} style = {styles.tokenClass}/>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() =>addbet(500)}>
+            <Image source={require("./images/chip/500.png")} style = {styles.tokenClass}/>
+        </TouchableOpacity>
+      </View> */}
       </View>
-
-
+    </ImageBackground>
       
   );
 }
@@ -301,9 +355,22 @@ const styles = StyleSheet.create(
           alignItems: 'center',
       },
       ImageClass: {
-          width: 50,
-          height: 72
+          width: 90,
+          height: 130, 
       },
+      ImageContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+      },
+      tokenClass: {
+        width: 60,
+        height: 60
+      }, 
+      Button : {
+        justifyContent: 'space-evenly',
+        alignItems: 'center'
+      }
   }
   )
 

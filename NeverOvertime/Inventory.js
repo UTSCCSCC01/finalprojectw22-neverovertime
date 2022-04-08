@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TouchableOpacity, View, StyleSheet, Image, Button , Text} from "react-native"
+import { TouchableOpacity, View, StyleSheet, Image, Button , Text, ImageBackground} from "react-native"
 import {addBal, subBal, checkBal} from "./EditBalance.js"
 import {apiAddress} from './ApiConfig'
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -79,6 +79,9 @@ function Inventory({ navigation, route }) {
     }
 
     return (
+        <ImageBackground source={require('./images/background/bgn.jpg') } resizeMode="cover" style={{flex:1, 
+            justifyContent: 'center'}}> 
+        
         <View style = {styles.Container}>
 
             <View style={styles.ItemsContainer}>
@@ -127,6 +130,7 @@ function Inventory({ navigation, route }) {
             </View>   
 
         </View> 
+        </ImageBackground>
     )
 }
 
@@ -134,7 +138,7 @@ const styles = StyleSheet.create(
 {
     Container: {
         flex: 1,
-        backgroundColor : 'white', 
+        // backgroundColor : 'white', 
         
     },
     ItemContainer:{
@@ -145,7 +149,7 @@ const styles = StyleSheet.create(
     },
     ItemTextContainer: {
         fontSize: 18,
-        color: 'black'
+        color: 'orange'
         
     },
     ItemsContainer:{
@@ -176,7 +180,7 @@ const styles = StyleSheet.create(
     },
     TextField: {
         fontSize: 20,
-        color: 'black'
+        color: 'orange'
     }
 }
 )
