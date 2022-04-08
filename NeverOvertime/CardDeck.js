@@ -1,25 +1,33 @@
+import CardImage from './CardImage.js'
+
 const SUITS = ["club", "heart", "spade", "diamond"]
 const RANKS = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
-
 /*
-Defines the Card class. Represents a card with rank and suit.
+Defines the Card class.
+
+Represents a card with rank and suit.
 */
 class Card{
     /* Constructor for Card. */
     constructor(rank, suit){
         this.rank = rank
         this.suit = suit
+        this.image = CardImage[`${rank}${suit}`]
+
     }
 }
 
-/* Defines the Deck class. Represents a full deck of cards. */
+/* Defines the Deck class.
+
+Represents a full deck of cards.
+*/
 export class Deck {
     /* Constructor for Deck. */
     constructor (cards = newDeck()) {
         this.cards = cards
     }
 
-    /* Obtain the number of cards in the deck. */
+    /* Returns the number of cards in the deck. */
     get cardNumber(){
         return this.cards.length
     }
@@ -42,7 +50,7 @@ export class Deck {
     }
 }
 
-/* Create a new full Deck of Cards. */
+/* Function to create a new full Deck of Cards. */
 function newDeck() {
     return SUITS.flatMap(suit => {
         return RANKS.map(rank => {

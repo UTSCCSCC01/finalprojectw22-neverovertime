@@ -21,6 +21,7 @@ function SignUp ({ navigation }) {
             const [text2, ChangeText2] = React.useState(null);
             const [text3, ChangeText3] = React.useState(null);
    const signupUser = (word1, word2, word3) => {
+
          fetch('http://'+apiAddress+':3000/api/user/signup', { //change your ip addressn here
                method: 'POST', // Here you're saying that you want to make a POST request. Could be any method, like a GET, for example.
                headers: {
